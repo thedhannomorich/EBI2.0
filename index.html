@@ -513,16 +513,75 @@ footer::before {
     </div>
   </div>
 
-  <script>
-    // Show progress bar immediately
-    document.addEventListener('DOMContentLoaded', function() {
-      // Check if user has already passed password check
-      if(sessionStorage.getItem('authenticated') === 'true') {
-        document.getElementById('progressContainer').style.display = 'none';
-        return;
-      }
+<script>
+  // Show progress bar immediately
+  document.addEventListener('DOMContentLoaded', function() {
+    // Check if user has already passed password check
+    if(sessionStorage.getItem('authenticated') === 'true') {
+      document.getElementById('progressContainer').style.display = 'none';
+      return;
+    }
+    
+    // Start progress animation
+    const progressFill = document.getElementById('progressFill');
+    let progress = 0;
+    const progressInterval = setInterval(() => {
+      progress += 1;
+      progressFill.style.width = progress + '%';
       
-      // Start progress animation
+      if(progress >= 50) {
+        clearInterval(progressInterval);
+        showPasswordForm();
+      }
+    }, 30);
+  });
+  
+  function showPasswordForm() {
+    document.getElementById('passwordForm').style.display = 'block';
+    document.querySelector('.progress-title').textContent = 'রেজিস্ট্রেশন নম্বর দিন';
+  }
+  
+  function checkPassword() {
+    const password = document.getElementById('passwordInput').value.trim();
+    const validPasswords = [
+      '2114304246', 
+      '2114304391',
+      // Add more passwords here if needed
+    ];
+    
+    if(validPasswords.includes(password)) {
+      // Correct password
+      sessionStorage.setItem('authenticated', 'true');
+      
+      // Continue progress to 100%
+      const progressFill = document.getElementById('progressFill');
+      let progress = 50;
+      const progressInterval = setInterval(() => {
+        progress += 1;
+        progressFill.style.width = progress + '%';
+        
+        if(progress >= 100) {
+          clearInterval(progressInterval);
+          document.getElementById('progressContainer').style.display = 'none';
+        }
+      }, 20);
+    } else {
+      // Wrong password
+      document.querySelector('.progress-wrapper').style.display = 'none';
+      document.getElementById('enrollmentMessage').style.display = 'block';
+    }
+  }
+  
+  function loadSubject(subjectName, filePath) {
+    // Check authentication first
+    if(sessionStorage.getItem('authenticated') !== 'true') {
+      document.getElementById('progressContainer').style.display = 'flex';
+      document.querySelector('.progress-wrapper').style.display = 'block';
+      document.getElementById('enrollmentMessage').style.display = 'none';
+      document.getElementById('passwordForm').style.display = 'none';
+      document.getElementById('progressFill').style.width = '0%';
+      
+      // Restart progress animation
       const progressFill = document.getElementById('progressFill');
       let progress = 0;
       const progressInterval = setInterval(() => {
@@ -534,66 +593,12 @@ footer::before {
           showPasswordForm();
         }
       }, 30);
-    });
-    
-    function showPasswordForm() {
-      document.getElementById('passwordForm').style.display = 'block';
-      document.querySelector('.progress-title').textContent = 'রেজিস্ট্রেশন নম্বর দিন';
+      return;
     }
     
-    function checkPassword() {
-      const password = document.getElementById('passwordInput').value.trim();
-      
-      if(password === '2114304246', '2114304391') {
-        // Correct password
-        sessionStorage.setItem('authenticated', 'true');
-        
-        // Continue progress to 100%
-        const progressFill = document.getElementById('progressFill');
-        let progress = 50;
-        const progressInterval = setInterval(() => {
-          progress += 1;
-          progressFill.style.width = progress + '%';
-          
-          if(progress >= 100) {
-            clearInterval(progressInterval);
-            document.getElementById('progressContainer').style.display = 'none';
-          }
-        }, 20);
-      } else {
-        // Wrong password
-        document.querySelector('.progress-wrapper').style.display = 'none';
-        document.getElementById('enrollmentMessage').style.display = 'block';
-      }
-    }
-    
-    function loadSubject(subjectName, filePath) {
-      // Check authentication first
-      if(sessionStorage.getItem('authenticated') !== 'true') {
-        document.getElementById('progressContainer').style.display = 'flex';
-        document.querySelector('.progress-wrapper').style.display = 'block';
-        document.getElementById('enrollmentMessage').style.display = 'none';
-        document.getElementById('passwordForm').style.display = 'none';
-        document.getElementById('progressFill').style.width = '0%';
-        
-        // Restart progress animation
-        const progressFill = document.getElementById('progressFill');
-        let progress = 0;
-        const progressInterval = setInterval(() => {
-          progress += 1;
-          progressFill.style.width = progress + '%';
-          
-          if(progress >= 50) {
-            clearInterval(progressInterval);
-            showPasswordForm();
-          }
-        }, 30);
-        return;
-      }
-      
-      // If authenticated, load the subject
-      window.location.href = filePath;
-    }
-  </script>
+    // If authenticated, load the subject
+    window.location.href = filePath;
+  }
+</script>
 </body>
 </html>
