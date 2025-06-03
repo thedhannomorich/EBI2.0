@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -21,7 +21,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Hind Siliguri', 'Poppins', sans-serif;
 }
 
 body {
@@ -228,88 +228,143 @@ footer::before {
   background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
 }
 
-/* Updated Subject click loader */
-#subjectLoader {
-  display: none;
+/* Progress Bar Container */
+#progressContainer {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.85);
-  z-index: 9999;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(8px);
-}
-
-.loader-box {
-  background: rgba(15, 15, 20, 0.9);
-  padding: 40px 60px;
-  border-radius: 30px;
-  text-align: center;
-  box-shadow: 0 0 50px rgba(255, 126, 0, 0.4);
-  border: 2px solid rgba(255, 126, 0, 0.3);
-  transform: scale(0.9);
-  animation: loaderPulse 2s infinite ease-in-out;
-}
-
-@keyframes loaderPulse {
-  0% { transform: scale(0.9); }
-  50% { transform: scale(0.95); }
-  100% { transform: scale(0.9); }
-}
-
-.loader-box h2 {
-  margin-bottom: 25px;
-  font-size: 24px;
-  background: linear-gradient(45deg, #ff7e00, #f9d423);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-
-.spinner {
-  width: 60px;
-  height: 60px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.spinner::before,
-.spinner::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  animation: spin 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
-}
-
-.spinner::before {
   width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(10px);
+}
+
+.progress-wrapper {
+  width: 80%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+.progress-title {
+  color: var(--accent-light);
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.progress-fill {
   height: 100%;
-  background: linear-gradient(45deg, transparent 40%, #ff7e00);
-  animation-name: spinOuter;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  border-radius: 5px;
+  transition: width 0.5s ease;
 }
 
-.spinner::after {
-  width: 75%;
-  height: 75%;
-  background: linear-gradient(-45deg, transparent 40%, #f9d423);
-  top: 12.5%;
-  left: 12.5%;
-  animation-name: spinInner;
+#passwordForm {
+  display: none;
+  width: 100%;
+  text-align: center;
 }
 
-@keyframes spinOuter {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+#passwordInput {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  color: white;
+  font-size: 16px;
+  text-align: center;
 }
 
-@keyframes spinInner {
-  0% { transform: rotate(-720deg); }
-  100% { transform: rotate(0deg); }
+#passwordInput:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.submit-btn {
+  background: var(--accent);
+  color: black;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
+}
+
+.enrollment-message {
+  display: none;
+  width: 90%;
+  max-width: 500px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  border: 2px solid rgba(255, 0, 0, 0.3);
+}
+
+.enrollment-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid rgba(255, 0, 0, 0.3);
+}
+
+.enrollment-title {
+  color: var(--accent-light);
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.enrollment-text {
+  color: white;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.enrollment-btn {
+  background: var(--accent);
+  color: black;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.enrollment-btn:hover {
+  background: var(--accent-light);
+  transform: translateY(-2px);
 }
 
 /* Animations */
@@ -359,6 +414,11 @@ footer::before {
   .cover-photo {
     max-width: 95%;
   }
+  
+  .progress-wrapper, .enrollment-message {
+    width: 90%;
+    padding: 20px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -372,6 +432,10 @@ footer::before {
   
   .subject-name {
     font-size: 16px;
+  }
+  
+  .progress-title, .enrollment-title {
+    font-size: 20px;
   }
 }
   </style>
@@ -388,14 +452,14 @@ footer::before {
     <div class="subject-card" onclick="loadSubject('বাংলা প্রথম পত্র', 'ben1.html')">
       <div class="subject-icon"><i class="fas fa-book-open"></i></div>
       <div class="subject-name">বাংলা প্রথম পত্র</div>
-      <div class="teacher-name">শাকিব হাসান</div>
+      <div class="teacher-name">সাকিব হাসান</div>
     </div>
 
     <!-- Bangla Ditiyo Potro -->
     <div class="subject-card" onclick="loadSubject('বাংলা দ্বিতীয় পত্র', 'ben2.html')">
       <div class="subject-icon"><i class="fas fa-book"></i></div>
       <div class="subject-name">বাংলা দ্বিতীয় পত্র</div>
-      <div class="teacher-name">শাকিব হাসান</div>
+      <div class="teacher-name">সাকিব হাসান</div>
     </div>
 
     <!-- Engreji Prothom Potro -->
@@ -409,7 +473,7 @@ footer::before {
     <div class="subject-card" onclick="loadSubject('ইংরেজি দ্বিতীয় পত্র', 'eng2.html')">
       <div class="subject-icon"><i class="fas fa-spell-check"></i></div>
       <div class="subject-name">ইংরেজি দ্বিতীয় পত্র</div>
-      <div class="teacher-name">শাইফুল ইসলাম</div>
+      <div class="teacher-name">সাইফুল ইসলাম</div>
     </div>
 
     <!-- Tottho o Jogajog Projukti -->
@@ -426,26 +490,109 @@ footer::before {
     <p>© 2025 Fahad's Tutorial - EBI 2.0 Complete Course</p>
   </footer>
 
-  <!-- Loading overlay -->
-  <div id="subjectLoader">
-    <div class="loader-box">
-      <h2>Loading Subject's Content...</h2>
-      <div class="spinner"></div>
+  <!-- Progress Bar and Password Container -->
+  <div id="progressContainer">
+    <div class="progress-wrapper">
+      <div class="progress-title">লোড হচ্ছে...</div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div id="passwordForm">
+        <input type="password" id="passwordInput" placeholder="আপনার রেজিস্ট্রেশন নম্বর দিন" />
+        <button class="submit-btn" onclick="checkPassword()">সাবমিট করুন</button>
+      </div>
+    </div>
+    
+    <div class="enrollment-message" id="enrollmentMessage">
+      <img src="https://th.bing.com/th/id/OIP._8ReA_6PJbywLbkhVn1ErAHaNK?rs=1&pid=ImgDetMain" class="enrollment-image" />
+      <h2 class="enrollment-title">দুঃখিত!</h2>
+      <p class="enrollment-text">
+        আপনি এখনও EBI 2.0 কোর্সে এনরোল করেননি। এই এক্সক্লুসিভ কোর্সে এনরোল করে HSC 2026-এর জন্য সম্পূর্ণ প্রস্তুতি নিন। আমাদের বিশেষজ্ঞ শিক্ষকদের গাইডেন্সে এখনই এনরোল করুন এবং সাফল্যের পথে এগিয়ে যান!
+      </p>
+      <a href="https://www.ft.education/page/hsc2026" class="enrollment-btn" target="_blank">এখনই এনরোল করুন</a>
     </div>
   </div>
 
   <script>
-    function loadSubject(subjectName, filePath) {
-      const loader = document.getElementById('subjectLoader');
-      loader.style.display = 'flex';
+    // Show progress bar immediately
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if user has already passed password check
+      if(sessionStorage.getItem('authenticated') === 'true') {
+        document.getElementById('progressContainer').style.display = 'none';
+        return;
+      }
       
-      setTimeout(() => {
-        // Try relative path first
-        const basePath = window.location.pathname.split('/').slice(0, -1).join('/');
-        const fullPath = `${basePath}/${filePath}`;
+      // Start progress animation
+      const progressFill = document.getElementById('progressFill');
+      let progress = 0;
+      const progressInterval = setInterval(() => {
+        progress += 1;
+        progressFill.style.width = progress + '%';
         
-        window.location.href = fullPath;
-      }, 800);
+        if(progress >= 50) {
+          clearInterval(progressInterval);
+          showPasswordForm();
+        }
+      }, 30);
+    });
+    
+    function showPasswordForm() {
+      document.getElementById('passwordForm').style.display = 'block';
+      document.querySelector('.progress-title').textContent = 'রেজিস্ট্রেশন নম্বর দিন';
+    }
+    
+    function checkPassword() {
+      const password = document.getElementById('passwordInput').value.trim();
+      
+      if(password === '2114304246') {
+        // Correct password
+        sessionStorage.setItem('authenticated', 'true');
+        
+        // Continue progress to 100%
+        const progressFill = document.getElementById('progressFill');
+        let progress = 50;
+        const progressInterval = setInterval(() => {
+          progress += 1;
+          progressFill.style.width = progress + '%';
+          
+          if(progress >= 100) {
+            clearInterval(progressInterval);
+            document.getElementById('progressContainer').style.display = 'none';
+          }
+        }, 20);
+      } else {
+        // Wrong password
+        document.querySelector('.progress-wrapper').style.display = 'none';
+        document.getElementById('enrollmentMessage').style.display = 'block';
+      }
+    }
+    
+    function loadSubject(subjectName, filePath) {
+      // Check authentication first
+      if(sessionStorage.getItem('authenticated') !== 'true') {
+        document.getElementById('progressContainer').style.display = 'flex';
+        document.querySelector('.progress-wrapper').style.display = 'block';
+        document.getElementById('enrollmentMessage').style.display = 'none';
+        document.getElementById('passwordForm').style.display = 'none';
+        document.getElementById('progressFill').style.width = '0%';
+        
+        // Restart progress animation
+        const progressFill = document.getElementById('progressFill');
+        let progress = 0;
+        const progressInterval = setInterval(() => {
+          progress += 1;
+          progressFill.style.width = progress + '%';
+          
+          if(progress >= 50) {
+            clearInterval(progressInterval);
+            showPasswordForm();
+          }
+        }, 30);
+        return;
+      }
+      
+      // If authenticated, load the subject
+      window.location.href = filePath;
     }
   </script>
 </body>
