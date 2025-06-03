@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ইংরেজি প্রথম পত্র | Fahad's Tutorial</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+:root {
+  --primary: #4b9cd3;
+  --primary-dark: #1a3a8f;
+  --accent: #ff7e00;
+  --accent-light: #f9d423;
+  --white: #ffffff;
+  --glass: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+  padding: 20px;
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.back-btn {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--accent-light);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.back-btn:hover {
+  background: var(--accent);
+  transform: translateX(-5px);
+}
+
+h1 {
+  font-size: 24px;
+  color: var(--accent-light);
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(249, 212, 35, 0.4);
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: var(--white);
+  font-size: 16px;
+  opacity: 0.9;
+  position: relative;
+  display: inline-block;
+}
+
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.video-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  background: #000;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-info {
+  margin-top: 15px;
+  background: var(--glass);
+  padding: 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
+}
+
+.video-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent-light);
+  margin-bottom: 10px;
+}
+
+.video-description {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.video-description a {
+  color: var(--accent-light);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: rgba(255, 126, 0, 0.1);
+  border: 1px solid rgba(255, 126, 0, 0.3);
+}
+
+.video-description a:hover {
+  background: rgba(255, 126, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.playlist-container {
+  flex: 0 0 350px;
+  background: var(--glass);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.playlist-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.playlist-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-light);
+}
+
+.dropdown {
+  margin-bottom: 20px;
+}
+
+.dropdown-btn {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(75, 156, 211, 0.2);
+  border: 1px solid rgba(75, 156, 211, 0.4);
+  color: var(--accent-light);
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.dropdown-btn:hover {
+  background: rgba(75, 156, 211, 0.4);
+}
+
+.dropdown-btn i {
+  transition: transform 0.3s ease;
+}
+
+.dropdown-btn.active i {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  display: none;
+  padding: 10px 0;
+  animation: fadeIn 0.3s ease;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.chapter-dropdown {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+
+.chapter-btn {
+  width: 100%;
+  padding: 10px 15px;
+  background: rgba(255, 126, 0, 0.1);
+  border: 1px solid rgba(255, 126, 0, 0.3);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+}
+
+.chapter-btn:hover {
+  background: rgba(255, 126, 0, 0.3);
+}
+
+.chapter-content {
+  display: none;
+  padding: 5px 0 5px 15px;
+  animation: fadeIn 0.3s ease;
+}
+
+.chapter-content.show {
+  display: block;
+}
+
+.video-item {
+  padding: 8px 12px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid transparent;
+}
+
+.video-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid var(--accent);
+}
+
+.video-item.active {
+  background: rgba(75, 156, 211, 0.2);
+  border-left: 3px solid var(--primary);
+}
+
+.video-item i {
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.video-item-title {
+  flex: 1;
+  font-size: 14px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+  }
+  
+  .playlist-container {
+    flex: 1;
+    width: 100%;
+    max-height: 400px;
+  }
+  
+  .video-container {
+    width: 100%;
+  }
+  
+  h1 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+  
+  .header {
+    margin-bottom: 20px;
+  }
+  
+  .back-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+  
+  .video-title {
+    font-size: 16px;
+  }
+  
+  .playlist-container {
+    padding: 15px;
+  }
+  
+  .dropdown-btn {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  
+  .video-item-title {
+    font-size: 13px;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="header">
+<div class="back-btn" onclick="window.history.back()">
+  <i class="fas fa-arrow-left"></i>
+</div>
+    <h1>ইংরেজি প্রথম পত্র</h1>
+    <p class="subtitle">সাইফুল ইসলাম রাসেল</p>
+  </div>
+
+  <div class="content-container">
+    <div class="video-container">
+      <div class="video-wrapper">
+        <iframe id="videoFrame" src="https://www.youtube.com/embed/IV6k5HrWQ8w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-info">
+        <div class="video-title" id="videoTitle">Select a Class to Begin</div>
+        <div class="video-description">
+          <a href="https://drive.google.com/drive/folders/1n3s7hHOpV_6djYovYtv-Tia7bjDAxe1m?fbclid=IwY2xjawKSgehleHRuA2FlbQIxMABicmlkETFmcEVNeTVHN255ejN2Y2hpAR61jkhiis6kQQOzksV86YnFo-NGtoB-69sXhHrB9TtpkZxKDDTl1Xeb7gpwCw_aem_M1HWOlBCRqJCsQTYPherbQ" target="_blank">
+            <i class="fas fa-file-pdf"></i> লেকচার শিট
+          </a>
+        </div>
+      </div>
+    </div>
+
+<div class="playlist-container">
+  <!-- Unit 1 -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Unit 1 <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 1 | HSC 2026 | Unit 1 | Lesson 1 | The Parrot\'s Tale | Rasel Sir | Part 1', '6_mCtqts7PQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 1</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 2 | HSC 2026 | Unit 1 | Lesson 1 | The Parrot\'s Tale | Rasel Sir | Part 2', '1qso-cyutMs')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 2</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 3 | Unit 1 | Lesson 2 | Education and Technology | Rasel SIr', 'RpF5UOwJ7Nk')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 3</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 4 | Unit 1 | Lesson 2 | Education and Technology | Rasel SIr', 'E_6lxKDTV0k')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 4</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 5 | Unit 1 | Education and Technology | Rasel SIr', 'dqL_DRDEItQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 5</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 6 | Unit 1 |Education and Technology | Rasel Sir', 'DbB9DOI9hsg')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 6</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 7 | HSC 2026 | Unit 1 | Lesson 3 | Children in School | Rasel Sir', 'Jm3XQetr6oM')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 7</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 8 | HSC 2026 | Unit 1 | Lesson 3 | Children in School | Rasel Sir', 'wEkGg9yCPjw')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 8</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 9 | HSC 2026 | Unit 1 | Lesson 4 | Civic and Engagement | Rasel Sir', 'eKeZzMxu_cQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 9</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 10 | HSC 2026 | Unit 1 | Lesson 4 | Civic and Engagement | Rasel Sir', '5UoGypjK30s')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 10</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 2 -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Unit 2 <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 11 | HSC 2026 | Unit 2 | Art and Craft | Rasel Sir', 'Ae0aye_fBck')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 11</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 12 | HSC 2026 | Unit 2 | Art and Craft | Rasel Sir', 'DMAz1be2Jfk')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 12</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 13 | HSC 2026 | Unit 2 | Art and Craft | Rasel Sir', 'PvNFxUBtE94')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 13</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 3 -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Unit 3 <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 14 | HSC 2026 | Unit 3 | Lesson 1 | Myths of Bangla | Shaiful Sir', 'epaOYPKD68A')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 14</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 15 | HSC 2026 | Unit 3 | Lesson 2 | Icarus | Shaiful Sir', 'IUZuXZYCINg')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 15</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 16 | HSC 2026 | Unit 3 | Lesson 2 | Icarus | Shaiful Sir', '3luzdp7LMYo')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 16</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 17 | HSC 2026 | Unit 3 | Lesson 3 | The Legend of Gazi | Shaiful Sir', 'g1c5gH7HyjA')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 17</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 18 | HSC 2026 | Unit 3 | Lesson 3 | The Legend of Gazi | Shaiful Sir', '65kP3Vp0e9w')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 18</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 19 | HSC 2026 | Unit 3 | Lesson 3 | The Legend of Gazi | Shaiful Sir', 'uJicdVpEDI8')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 19</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 20 | HSC 2026 | Unit 3 | Lesson 4 | Khona | Shaiful Sir', 'OjkzchhPIng')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 20</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 21 | Part 1 | HSC 2026 | Unit 3 | Lesson 4 | Khona | Shaiful Sir', 'P2q1xPZi1e8')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 21 (Part 1)</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 21 | Part 2 | HSC 2026 | Unit 3 | Lesson 4 | Khona | Shaiful Sir', '2IUCJ0hVsYY')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 21 (Part 2)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 4 -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Unit 4 <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 22 | HSC 2026 | Unit 4 | Speech 1(Martin Luther) | Rasel Sir', 'pPQ8_SWiM6Q')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 22</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 23 | HSC 2026 | Unit 4 | Speech 2 (Sheikh Mujib) | Rasel Sir', 'sDerelyY3MQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 23</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 24 | HSC 2026 | Unit 4 | Speech 2 (Sheikh Mujib) | Rasel Sir', 'PsD-aDQr_7E')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 24</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 25 | HSC 2026 | Unit 4 | Speech 3 (Nelson Mandela) | Rasel Sir', 'CF6CUfd9YEU')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 25</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 26 | HSC 2026 | Unit 4 | Great Women | Rasel Sir', 'eTofFmSisdo')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 26</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 5 -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Unit 5 <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 27 | HSC 2026 | Unit 5 | Lesson 1 | Are we Aware of These Rights-I? | Taj Sir', '9EH9DXGpE30')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 27</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 28 | HSC 2026 | Unit 5 | Human Rights | Shaiful Sir', 'irY8MeTQdTQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 28</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 6 -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Unit 6 <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 29 | HSC 2026 | Unit 6 | What is a Dream? | Rasel Sir', 'icC6XRBW_II')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 29</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 30 | HSC 2026 | Unit 6 | Dream Poems | Rasel Sir', 'lFvvELEdJJs')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 30</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 7 -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Unit 7 <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 31 | HSC 2026 | Unit 7 | Brozen Das | Shaiful Sir', 'FaOAzPgkylw')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 31</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 32 | HSC 2026 | Unit 7 | Brozen Das | Shaiful Sir', 'wQ8_gQKNGzc')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 32</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 33 | HSC 2026 | Unit 7 | Nishat Mojumder | Shaiful Sir', 'ms4bTDQnwBI')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 33</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 34 | HSC 2026 | Unit 7 | Nishat Mojumder | Shaiful Sir', 'CFr1D-aZw_U')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 34</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 35 | HSC 2026 | Unit 7 | The Unbeaten Girls | Shaiful Sir', 'JfS0fTC1tog')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 35</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 36 | HSC 2026 | Unit 7 | The Unbeaten Girls | Shaiful Sir', 'thMffEQIp9Q')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 36</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 8 -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Unit 8 <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 37 | HSC 2026 | Unit 8 | Family Relationship | Rasel Sir', 'xD6_fjRMd74')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 37</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 38 | HSC 2026 | Unit 8 | A Mother in Manville | Rasel Sir', 'MrmmXxyvccs')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 38</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 39 | HSC 2026 | Unit 8 | A Mother in Manville | Rasel Sir | Part 2', '0aIOBuZD--0')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 39</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 40 | HSC 2026 | Unit 8 | Lesson 4 | Love | Rasel Sir', 'lZgmwH7dIM0')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 40</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 9 -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Unit 9 <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 41 | HSC 2026 | Unit 9 | Lesson 1 | The Strom and Stress of Adolescence | Taj Sir', 'V92FVC6gesU')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 41</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 42 | HSC 2026 | Unit 9 | Lesson 2 | Adolescence and Some Problems in Bangladesh | Taj Sir', 'kpuiFFUuM1Y')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 42</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 43 | HSC 2026 | Unit 9 | The Story of Shilpi | Taj Sir', '37_HPi3MIkg')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 43</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 44 | HSC 2026 | Unit 9 | Lesson 4 | Say No to Bullying | Rasel Sir | Part 1', 'cYvBdm6UxBQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 44</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 45 | HSC 2026 | Unit 9 | Lesson 4 | Say No to Bullying | Rasel Sir | Part 2', 'xqZvC2ZiXLg')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 45</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 10 -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Unit 10 <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 46 | HSC 2026 | Unit 10 | Lesson 1 | Manners Around The World | Shaiful Sir', 'zDZpRNqUzbI')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 46</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 47 | HSC 2026 | Unit 10 | Lesson 2 | Etiquette Netiquette | Shaiful Sir | Part 1', '6BI2sGFpssM')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 47</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 48 | HSC 2026 | Unit 10 | Lesson 2 | Etiquette Netiquette | Shaiful Sir | Part 2', 'MBq6Avz-Vfg')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 48</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 49 | HSC 2026 | Unit 10 | Lesson 3 | Food And Culture | Shaiful Sir | Part 1', '5OGnva7YmZs')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 49</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 50 | HSC 2026 | Unit 10 | Lesson 3 | Food And Culture | Shaiful Sir | Part 2', '-Bzd-bBAMJg')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 50</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 11 -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Unit 11 <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 51 | Unit 11 | Peace and Conflict | Shaiful Sir', 'JDrzXwfBEVM')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 51</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Unit 12 -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Unit 12 <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 52 | Unit 12 | Environment and Nature | Shaiful Sir', 'CL1NhoqVifY')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 52</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 53 | Unit 12 | Environment and Nature | Shaiful Sir', 'WFUTLgkuHZg')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 53</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Additional Classes -->
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Additional Classes <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 54 | HSC 2026 | Flow Chart and Summary Writing | Rasel Sir', 'Dq_yn1bG03c')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 54</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 55 | HSC 2026 | Poem Theme Writing | Rasel sir', 'BFl9xzkykR0')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 55</span>
+      </div>
+    </div>
+  </div>
+</div>
+  <script>
+    function toggleDropdown(button) {
+      button.classList.toggle('active');
+      const content = button.nextElementSibling;
+      content.classList.toggle('show');
+    }
+    
+    function toggleChapter(button) {
+      button.classList.toggle('active');
+      const content = button.nextElementSibling;
+      content.classList.toggle('show');
+    }
+    
+    function changeVideo(title, videoId) {
+      // Update video
+      const iframe = document.getElementById('videoFrame');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      
+      // Update title
+      document.getElementById('videoTitle').textContent = title;
+      
+      // Update active state in playlist
+      const allItems = document.querySelectorAll('.video-item');
+      allItems.forEach(item => item.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      
+      // Scroll to the active item
+      event.currentTarget.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+    }
+    
+  </script>
+</body>
+</html>

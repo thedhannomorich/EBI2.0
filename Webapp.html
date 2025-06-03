@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EBI 2.0 Complete Course</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+:root {
+  --primary: #4b9cd3;
+  --primary-dark: #1a3a8f;
+  --accent: #ff7e00;
+  --accent-light: #f9d423;
+  --white: #ffffff;
+  --glass: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+  padding: 20px;
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.logo {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  box-shadow: 0 5px 25px rgba(251, 176, 52, 0.4);
+  border: 3px solid var(--accent);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.logo:hover {
+  transform: rotate(10deg) scale(1.05);
+  box-shadow: 0 8px 30px rgba(251, 176, 52, 0.6);
+}
+
+h1 {
+  font-size: 24px;
+  color: var(--accent-light);
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(249, 212, 35, 0.4);
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: var(--white);
+  font-size: 16px;
+  opacity: 0.9;
+  position: relative;
+  display: inline-block;
+}
+
+.subtitle::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  animation: underlineExpand 2s infinite;
+}
+
+@keyframes underlineExpand {
+  0% { transform: scaleX(0); opacity: 0; }
+  50% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(0); opacity: 0; }
+}
+
+.subjects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  max-width: 1000px;
+  margin: 0 auto 40px auto;
+  animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+.subject-card {
+  background: var(--glass);
+  border-radius: 20px;
+  padding: 25px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  border: 1px solid var(--glass-border);
+  position: relative;
+  overflow: hidden;
+}
+
+.subject-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to bottom right,
+    transparent,
+    transparent,
+    transparent,
+    var(--glass-highlight)
+  );
+  transform: rotate(30deg);
+  transition: all 0.6s ease;
+}
+
+.subject-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.subject-card:hover::before {
+  transform: rotate(30deg) translate(20%, 20%);
+}
+
+.subject-icon {
+  font-size: 32px;
+  color: var(--accent);
+  margin-bottom: 15px;
+  text-shadow: 0 0 15px rgba(255, 126, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+
+.subject-card:hover .subject-icon {
+  transform: scale(1.2) rotate(10deg);
+  color: var(--accent-light);
+}
+
+.subject-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent-light);
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.subject-card:hover .subject-name {
+  letter-spacing: 1px;
+}
+
+.teacher-name {
+  color: var(--white);
+  font-size: 14px;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.subject-card:hover .teacher-name {
+  opacity: 1;
+  transform: translateY(3px);
+}
+
+.cover-photo {
+  max-width: 90%;
+  display: block;
+  margin: 40px auto 0;
+  border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+  100% { transform: translateY(0px); }
+}
+
+.cover-photo:hover {
+  transform: translateY(-15px) scale(1.02);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+}
+
+footer {
+  text-align: center;
+  margin-top: 60px;
+  padding: 20px;
+  font-size: 14px;
+  color: var(--white);
+  opacity: 0.7;
+  position: relative;
+}
+
+footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+}
+
+/* Updated Subject click loader */
+#subjectLoader {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+.loader-box {
+  background: rgba(15, 15, 20, 0.9);
+  padding: 40px 60px;
+  border-radius: 30px;
+  text-align: center;
+  box-shadow: 0 0 50px rgba(255, 126, 0, 0.4);
+  border: 2px solid rgba(255, 126, 0, 0.3);
+  transform: scale(0.9);
+  animation: loaderPulse 2s infinite ease-in-out;
+}
+
+@keyframes loaderPulse {
+  0% { transform: scale(0.9); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(0.9); }
+}
+
+.loader-box h2 {
+  margin-bottom: 25px;
+  font-size: 24px;
+  background: linear-gradient(45deg, #ff7e00, #f9d423);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.spinner::before,
+.spinner::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  animation: spin 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+}
+
+.spinner::before {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 40%, #ff7e00);
+  animation-name: spinOuter;
+}
+
+.spinner::after {
+  width: 75%;
+  height: 75%;
+  background: linear-gradient(-45deg, transparent 40%, #f9d423);
+  top: 12.5%;
+  left: 12.5%;
+  animation-name: spinInner;
+}
+
+@keyframes spinOuter {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes spinInner {
+  0% { transform: rotate(-720deg); }
+  100% { transform: rotate(0deg); }
+}
+
+/* Animations */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .subjects-container {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    max-width: 400px;
+  }
+  
+  .logo {
+    width: 90px;
+    height: 90px;
+  }
+  
+  h1 {
+    font-size: 20px;
+  }
+  
+  .subject-card {
+    padding: 20px;
+  }
+  
+  .cover-photo {
+    max-width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+  
+  .logo-container {
+    margin-bottom: 20px;
+  }
+  
+  .subject-name {
+    font-size: 16px;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <img src="https://media.licdn.com/dms/image/v2/D560BAQGKyPPU-RqEGw/company-logo_200_200/company-logo_200_200/0/1716019885470/fahadstutorialofficial_logo?e=2147483647&v=beta&t=E70h0bGad7r7w2Q_xuznEMA3B-D5BbpTbGufk9C4H60" alt="Fahad's Tutorial Logo" class="logo" />
+    <h1>EBI 2.0 COMPLETE COURSE</h1>
+    <p class="subtitle">Select a subject to begin</p>
+  </div>
+
+  <div class="subjects-container">
+    <!-- Bangla Prothom Potro -->
+    <div class="subject-card" onclick="loadSubject('বাংলা প্রথম পত্র', 'ben1.html')">
+      <div class="subject-icon"><i class="fas fa-book-open"></i></div>
+      <div class="subject-name">বাংলা প্রথম পত্র</div>
+      <div class="teacher-name">শাকিব হাসান</div>
+    </div>
+
+    <!-- Bangla Ditiyo Potro -->
+    <div class="subject-card" onclick="loadSubject('বাংলা দ্বিতীয় পত্র', 'ben2.html')">
+      <div class="subject-icon"><i class="fas fa-book"></i></div>
+      <div class="subject-name">বাংলা দ্বিতীয় পত্র</div>
+      <div class="teacher-name">শাকিব হাসান</div>
+    </div>
+
+    <!-- Engreji Prothom Potro -->
+    <div class="subject-card" onclick="loadSubject('ইংরেজি প্রথম পত্র', 'eng1.html')">
+      <div class="subject-icon"><i class="fas fa-language"></i></div>
+      <div class="subject-name">ইংরেজি প্রথম পত্র</div>
+      <div class="teacher-name">সাইফুল ইসলাম রাসেল</div>
+    </div>
+
+    <!-- Engreji Ditiyo Potro -->
+    <div class="subject-card" onclick="loadSubject('ইংরেজি দ্বিতীয় পত্র', 'eng2.html')">
+      <div class="subject-icon"><i class="fas fa-spell-check"></i></div>
+      <div class="subject-name">ইংরেজি দ্বিতীয় পত্র</div>
+      <div class="teacher-name">শাইফুল ইসলাম</div>
+    </div>
+
+    <!-- Tottho o Jogajog Projukti -->
+    <div class="subject-card" onclick="loadSubject('তথ্য ও যোগাযোগ প্রযুক্তি', 'ict.html')">
+      <div class="subject-icon"><i class="fas fa-laptop-code"></i></div>
+      <div class="subject-name">তথ্য ও যোগাযোগ প্রযুক্তি</div>
+      <div class="teacher-name">মোস্তাফিজুর রহমান সানি</div>
+    </div>
+  </div>
+
+  <img class="cover-photo" src="https://i.ytimg.com/vi/IV6k5HrWQ8w/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLARoVRRHtm0x8-ZEaECegld5EEOdg" alt="Course Cover Photo" />
+
+  <footer>
+    <p>© 2025 Fahad's Tutorial - EBI 2.0 Complete Course</p>
+  </footer>
+
+  <!-- Loading overlay -->
+  <div id="subjectLoader">
+    <div class="loader-box">
+      <h2>Loading Subject's Content...</h2>
+      <div class="spinner"></div>
+    </div>
+  </div>
+
+  <script>
+    function loadSubject(subjectName, filePath) {
+      const loader = document.getElementById('subjectLoader');
+      loader.style.display = 'flex';
+      
+      setTimeout(() => {
+        // Try relative path first
+        const basePath = window.location.pathname.split('/').slice(0, -1).join('/');
+        const fullPath = `${basePath}/${filePath}`;
+        
+        window.location.href = fullPath;
+      }, 800);
+    }
+  </script>
+</body>
+</html>

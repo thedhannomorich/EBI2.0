@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>তথ্য ও যোগাযোগ প্রযুক্তি| Fahad's Tutorial</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+:root {
+  --primary: #4b9cd3;
+  --primary-dark: #1a3a8f;
+  --accent: #ff7e00;
+  --accent-light: #f9d423;
+  --white: #ffffff;
+  --glass: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+  padding: 20px;
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeInDown 0.8s ease-out;
+}
+
+.back-btn {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--accent-light);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.back-btn:hover {
+  background: var(--accent);
+  transform: translateX(-5px);
+}
+
+h1 {
+  font-size: 24px;
+  color: var(--accent-light);
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(249, 212, 35, 0.4);
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: var(--white);
+  font-size: 16px;
+  opacity: 0.9;
+  position: relative;
+  display: inline-block;
+}
+
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.video-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  background: #000;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-info {
+  margin-top: 15px;
+  background: var(--glass);
+  padding: 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
+}
+
+.video-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent-light);
+  margin-bottom: 10px;
+}
+
+.video-description {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.video-description a {
+  color: var(--accent-light);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: rgba(255, 126, 0, 0.1);
+  border: 1px solid rgba(255, 126, 0, 0.3);
+}
+
+.video-description a:hover {
+  background: rgba(255, 126, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.playlist-container {
+  flex: 0 0 350px;
+  background: var(--glass);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.playlist-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.playlist-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-light);
+}
+
+.dropdown {
+  margin-bottom: 20px;
+}
+
+.dropdown-btn {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(75, 156, 211, 0.2);
+  border: 1px solid rgba(75, 156, 211, 0.4);
+  color: var(--accent-light);
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.dropdown-btn:hover {
+  background: rgba(75, 156, 211, 0.4);
+}
+
+.dropdown-btn i {
+  transition: transform 0.3s ease;
+}
+
+.dropdown-btn.active i {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  display: none;
+  padding: 10px 0;
+  animation: fadeIn 0.3s ease;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.chapter-dropdown {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+
+.chapter-btn {
+  width: 100%;
+  padding: 10px 15px;
+  background: rgba(255, 126, 0, 0.1);
+  border: 1px solid rgba(255, 126, 0, 0.3);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+}
+
+.chapter-btn:hover {
+  background: rgba(255, 126, 0, 0.3);
+}
+
+.chapter-content {
+  display: none;
+  padding: 5px 0 5px 15px;
+  animation: fadeIn 0.3s ease;
+}
+
+.chapter-content.show {
+  display: block;
+}
+
+.video-item {
+  padding: 8px 12px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid transparent;
+}
+
+.video-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid var(--accent);
+}
+
+.video-item.active {
+  background: rgba(75, 156, 211, 0.2);
+  border-left: 3px solid var(--primary);
+}
+
+.video-item i {
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.video-item-title {
+  flex: 1;
+  font-size: 14px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+  }
+  
+  .playlist-container {
+    flex: 1;
+    width: 100%;
+    max-height: 400px;
+  }
+  
+  .video-container {
+    width: 100%;
+  }
+  
+  h1 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+  
+  .header {
+    margin-bottom: 20px;
+  }
+  
+  .back-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+  
+  .video-title {
+    font-size: 16px;
+  }
+  
+  .playlist-container {
+    padding: 15px;
+  }
+  
+  .dropdown-btn {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  
+  .video-item-title {
+    font-size: 13px;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="header">
+<div class="back-btn" onclick="window.history.back()">
+  <i class="fas fa-arrow-left"></i>
+</div>
+    <h1>তথ্য ও যোগাযোগ প্রযুক্তি</h1>
+    <p class="subtitle">মোস্তাফিজুর রহমান সানি</p>
+  </div>
+
+  <div class="content-container">
+    <div class="video-container">
+      <div class="video-wrapper">
+        <iframe id="videoFrame" src="https://www.youtube.com/embed/IV6k5HrWQ8w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-info">
+        <div class="video-title" id="videoTitle">Select a Class to Begin</div>
+        <div class="video-description">
+          <a href="https://drive.google.com/drive/folders/1n3s7hHOpV_6djYovYtv-Tia7bjDAxe1m?fbclid=IwY2xjawKSgehleHRuA2FlbQIxMABicmlkETFmcEVNeTVHN255ejN2Y2hpAR61jkhiis6kQQOzksV86YnFo-NGtoB-69sXhHrB9TtpkZxKDDTl1Xeb7gpwCw_aem_M1HWOlBCRqJCsQTYPherbQ" target="_blank">
+            <i class="fas fa-file-pdf"></i> লেকচার শিট
+          </a>
+        </div>
+      </div>
+    </div>
+<div class="playlist-container">
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+     Chapter 1
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 1 | Lecture 1 | Sany Sir', '9M6MgmLNUyc')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 1</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 1 | Lecture 2 | Sany Sir', 'rqugx6m7CQQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+     Chapter 2
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 2 | Lecture 1 | Sany Sir', 'ok1n_HTQNaY')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 1</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 2 | Lecture 2 | Sany Sir', 'vIFF_g1-glY')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 2</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 2 | Lecture 3 | Sany Sir', 'agrQ1RjEhLw')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 3</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 2 | Lecture 4 | Sany Sir', 'K33qUwAphk4')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 4</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 2 | Lecture 5 | Sany Sir', 'ZtBqwOr5Q00')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 5</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 2 | Lecture 6 | Sany Sir', 'zCiTabfsPL4')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 6</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 2 | Lecture 7 | Sany Sir', 'Ft_LXlRpGEQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 7</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+     Chapter 3.1
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.1 | Lecture 1 | Sany Sir', 'lSgLRa0pLl0')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 1</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.1 | Lecture 2 | Sany Sir', 'hACfgRLICrQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 2</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.1 | Lecture 3 | Sany Sir', 'uqSsaGyf68g')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 3</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.1 | Lecture 4 | Sany Sir', 'tjSEvLdRreo')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 4</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.1 | Lecture 5 | Sany Sir', 'vqmo9EZ0EQk')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 5</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.1 | Lecture 6 | Sany Sir', 'dV7DICwOy5c')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 6</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.1 | Lecture 7 | Sany Sir', 'uEkbarlEkFc')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 7</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.1 | Lecture 8 | Sany Sir', 'WM9NEXJKAJ0')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 8</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.1 | Lecture 9 | Part 1 | Sany Sir', 'a1824GpAVZ8')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 9 | Part 1</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.1 | Lecture 9 | Part 2 | Sany Sir', 'hZCBFEg8KFk')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 9 | Part 2</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Chapter 3.2
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.2 | Lecture 1 | Sany Sir', 'cGMKfa3Ttso')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 1</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.2 | Lecture 2 | Sany Sir', 'anEoQEHzPzU')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 2</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.2 | Lecture 3 | Sany Sir', 'YdBW5HTjkzE')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 3</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.2 | Lecture 4 | Sany Sir', 'Db01MKf9GuQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 4</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.2 | Lecture 5 | Sany Sir', '7Eos0sgfqXk')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 5</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.2 | Lecture 6 | Sany Sir', 'BBi5-rNsWAI')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 6</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.2 | Lecture 7 | Sany Sir', 'Kya7LGT61mo')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 7</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.2 | Lecture 8 | Sany Sir', 'UOT-JJIaEwg')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 8</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.2 | Lecture 9 | Sany Sir', 'm41fdkzj0To')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 9</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.2 | Lecture 10 | Sany Sir', '_agt_tFalXY')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 10</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 3.2 | Lecture 11 | Board Question Solve - HSC\'24 | Sany Sir', 'ob-hNIKy9Dc')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 11 | Board Question Solve</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Chapter 4
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 4 | Lecture 1 | Sany Sir', 'KsRILxz-NSs')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 1</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 4 | Lecture 2 | Sany Sir', 'rzJ64CuAzH4')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 2</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 4 | Lecture 3 | Sany Sir', '1MGyFAmEjTI')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 3</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 4 | Lecture 4 | Sany Sir', 'KiYUD7hymP8')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 4</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 4 | Lecture 5 | Sany Sir', 'zA14mwFu3m4')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 5</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 4 | Lecture 6 | Part 1 | Sany Sir', 'GwAFCmvr4Hc')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 6 | Part 1</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 4 | Lecture 6 | Part 2 | Sany Sir', 'G7Wlm5gHtzo')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 6 | Part 2</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 4 | Lecture 7 | Sany Sir', 'Qkx-YIfo2WY')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 7</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 4 | Lecture 8 | Sany Sir', 'ByO8kBEUn48')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 8</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 4 | Lecture 9 | Sany Sir', '7tSoIYoGiT0')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 9</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 4 | Lecture 10 | Sany Sir', 'yEcuRS8yhiA')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 10</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Chapter 5
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 5 | Lecture 1 | Sany Sir', 'YO1WMhDtT3I')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 1</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 5 | Lecture 2 | Sany Sir', 'wQRYQoo4NSY')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 2</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 5 | Lecture 3 | Sany Sir', 'ASkpEGluqvE')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 3</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 5 | Lecture 4 | Sany Sir', 'WP7GfBK37dw')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 4</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 5 | Lecture 5 | Sany Sir', 'nuGcpYNYEyI')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 5</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 5 | Lecture 6 | Sany Sir', 'dlQxoFkIP0I')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 6</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 5 | Lecture 7 | Sany Sir', '4Wmxwz_Qt8E')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 7</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 5 | Lecture 8 | Sany Sir', 'kZQPgDLpy8M')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 8</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 5 | Lecture 9 | Sany Sir', '-OgZwh4v_ac')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 9</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 5 | Lecture 10 | Sany Sir', '2JT-hW6IQak')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 10</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 5 | Lecture 11 | Sany Sir', 'L0y8-qzc-6I')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 11</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 5 | Lecture 12 | Sany Sir', 'Yi9G9j8OHW0')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 12</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Chapter 6
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 6 | Lecture 1 | Sany Sir', 'cPhrO-AB3pM')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 1</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 6 | Lecture 2 | Sany Sir', 'k3fwtsayqmE')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 2</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 6 | Lecture 3 | Sany Sir', 'KfrCDbH-4zI')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 3</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 6 | Lecture 4 | Sany Sir', 'Zj9nr5v_HR0')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 4</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 6 | Lecture 5 | Sany Sir', '-TCGGiYNaLE')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 5</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('ICT | Chapter 6 | Lecture 6 | Sany Sir', 'UZbuvVI4GIs')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Lecture 6</span>
+      </div>
+    </div>
+  </div>
+</div>
+  <script>
+    function toggleDropdown(button) {
+      button.classList.toggle('active');
+      const content = button.nextElementSibling;
+      content.classList.toggle('show');
+    }
+    
+    function toggleChapter(button) {
+      button.classList.toggle('active');
+      const content = button.nextElementSibling;
+      content.classList.toggle('show');
+    }
+    
+    function changeVideo(title, videoId) {
+      // Update video
+      const iframe = document.getElementById('videoFrame');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      
+      // Update title
+      document.getElementById('videoTitle').textContent = title;
+      
+      // Update active state in playlist
+      const allItems = document.querySelectorAll('.video-item');
+      allItems.forEach(item => item.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      
+      // Scroll to the active item
+      event.currentTarget.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+    }
+    
+  </script>
+</body>
+</html>
