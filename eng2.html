@@ -1,77 +1,789 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ইংরেজি দ্বিতীয় পত্র | Fahad's Tutorial</title>
+  <title>এইংরেজি দ্বিতীয় পত্র | Fahad's Tutorial</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
-    :root {
-      --primary: #4b9cd3;
-      --white: #ffffff;
-      --glass: rgba(255, 255, 255, 0.1);
-    }
+:root {
+  --primary: #4b9cd3;
+  --primary-dark: #1a3a8f;
+  --accent: #ff7e00;
+  --accent-light: #f9d423;
+  --white: #ffffff;
+  --glass: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Hind Siliguri', sans-serif;
-    }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Hind Siliguri', 'Poppins', sans-serif;
+}
 
-    body {
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
-      text-align: center;
-    }
+body {
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
+  padding: 20px;
+  min-height: 100vh;
+  font-size: 14px;
+  line-height: 1.6;
+}
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  animation: fadeInDown 0.8s ease-out;
+}
 
-    h2 {
-      font-size: 1.5rem;
-      margin-bottom: 20px;
-    }
+.back-btn {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--accent-light);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
 
-    .image-wrapper {
-      max-width: 400px;
-      width: 100%;
-      padding: 20px;
-      background-color: var(--glass);
-      border: 1px solid var(--white);
-      border-radius: 15px;
-      backdrop-filter: blur(8px);
-      box-shadow: 0 0 15px rgba(255,255,255,0.1);
-    }
+.back-btn:hover {
+  background: var(--accent);
+  transform: translateX(-5px);
+}
 
-    .image-wrapper img {
-      width: 100%;
-      border-radius: 10px;
-    }
+h1 {
+  font-size: 24px;
+  color: var(--accent-light);
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 2px 10px rgba(249, 212, 35, 0.4);
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: var(--white);
+  font-size: 16px;
+  opacity: 0.9;
+  position: relative;
+  display: inline-block;
+}
+
+.content-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.video-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  background: #000;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-info {
+  margin-top: 15px;
+  background: var(--glass);
+  padding: 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
+}
+
+.video-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent-light);
+  margin-bottom: 10px;
+}
+
+.video-description {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.video-description a {
+  color: var(--accent-light);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: rgba(255, 126, 0, 0.1);
+  border: 1px solid rgba(255, 126, 0, 0.3);
+}
+
+.video-description a:hover {
+  background: rgba(255, 126, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+.playlist-container {
+  flex: 0 0 350px;
+  background: var(--glass);
+  border-radius: 15px;
+  padding: 20px;
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.playlist-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.playlist-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+.playlist-container::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-light);
+}
+
+.dropdown {
+  margin-bottom: 20px;
+}
+
+.dropdown-btn {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(75, 156, 211, 0.2);
+  border: 1px solid rgba(75, 156, 211, 0.4);
+  color: var(--accent-light);
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.dropdown-btn:hover {
+  background: rgba(75, 156, 211, 0.4);
+}
+
+.dropdown-btn i {
+  transition: transform 0.3s ease;
+}
+
+.dropdown-btn.active i {
+  transform: rotate(180deg);
+}
+
+.dropdown-content {
+  display: none;
+  padding: 10px 0;
+  animation: fadeIn 0.3s ease;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.chapter-dropdown {
+  margin-top: 10px;
+  margin-left: 15px;
+}
+
+.chapter-btn {
+  width: 100%;
+  padding: 10px 15px;
+  background: rgba(255, 126, 0, 0.1);
+  border: 1px solid rgba(255, 126, 0, 0.3);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+}
+
+.chapter-btn:hover {
+  background: rgba(255, 126, 0, 0.3);
+}
+
+.chapter-content {
+  display: none;
+  padding: 5px 0 5px 15px;
+  animation: fadeIn 0.3s ease;
+}
+
+.chapter-content.show {
+  display: block;
+}
+
+.video-item {
+  padding: 8px 12px;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid transparent;
+}
+
+.video-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid var(--accent);
+}
+
+.video-item.active {
+  background: rgba(75, 156, 211, 0.2);
+  border-left: 3px solid var(--primary);
+}
+
+.video-item i {
+  color: var(--accent);
+  font-size: 12px;
+}
+
+.video-item-title {
+  flex: 1;
+  font-size: 14px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .content-container {
+    flex-direction: column;
+  }
+  
+  .playlist-container {
+    flex: 1;
+    width: 100%;
+    max-height: 400px;
+  }
+  
+  .video-container {
+    width: 100%;
+  }
+  
+  h1 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 15px;
+  }
+  
+  .header {
+    margin-bottom: 20px;
+  }
+  
+  .back-btn {
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+  }
+  
+  .video-title {
+    font-size: 16px;
+  }
+  
+  .playlist-container {
+    padding: 15px;
+  }
+  
+  .dropdown-btn {
+    padding: 10px 12px;
+    font-size: 14px;
+  }
+  
+  .video-item-title {
+    font-size: 13px;
+  }
+}
   </style>
 </head>
 <body>
-  <h1>ইংরেজি দ্বিতীয় পত্র </h1>
-  <h2>সাইফুল ইসলাম</h2>
-  <h3>Update will be available on 25th June, 2025</h3>
-  <div class="image-wrapper">
-    <img src="https://png.pngtree.com/png-vector/20230316/ourmid/pngtree-website-under-construction-in-yellow-rounded-square-shape-with-black-line-vector-png-image_6649503.png" alt="Under Construction">
+  <div class="header">
+<div class="back-btn" onclick="window.history.back()">
+  <i class="fas fa-arrow-left"></i>
+</div>
+    <h1>ইংরেজি দ্বিতীয় পত্র</h1>
+    <p class="subtitle">সাকিব হাসান</p>
   </div>
+
+  <div class="content-container">
+    <div class="video-container">
+      <div class="video-wrapper">
+        <iframe id="videoFrame" src="https://www.youtube.com/embed/IV6k5HrWQ8w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="video-info">
+        <div class="video-title" id="videoTitle">Select a Class to Begin</div>
+        <div class="video-description">
+          <a href="https://drive.google.com/drive/folders/1n3s7hHOpV_6djYovYtv-Tia7bjDAxe1m?fbclid=IwY2xjawKSgehleHRuA2FlbQIxMABicmlkETFmcEVNeTVHN255ejN2Y2hpAR61jkhiis6kQQOzksV86YnFo-NGtoB-69sXhHrB9TtpkZxKDDTl1Xeb7gpwCw_aem_M1HWOlBCRqJCsQTYPherbQ" target="_blank">
+            <i class="fas fa-file-pdf"></i> লেকচার শিট
+          </a>
+        </div>
+      </div>
+    </div>
+
+<div class="playlist-container">
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Special Use of Word and Phrases
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 1 | Special Use of Word and Phrases | Taj Sir', 'v_-Oc2IYxs8')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 1</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 2 | Special Use of Word and Phrases | Taj Sir', 'iS6L_S6Y9p0')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 2</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 3 | Part 1 | Special Use of Word and Phrases | Taj Sir', 'em-8pviB1E4')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 3 (Part 1)</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 3 | Part 2 | Special Use of Word and Phrases | Taj Sir', 'qqyA264S3vg')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 3 (Part 2)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Sentence Classification
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 4 | Sentence and Its Classification | Taj Sir', 'PTFoBithTI4')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 4</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 5 | Sentence and Its Classification | Taj Sir', 'ocYBg-ctLyg')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 5</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 6 | Sentence Classification | Question Solve | Taj Sir', 'ca0Wxywd0zo')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 6</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 7 | Sentence Classification | Practice Sheet Solve | Taj Sir', '-jRJA4TbVXo')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 7</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Preposition
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 8 | Preposition | Rasel Sir', 'VGchFPT80VQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 8</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 9 | Preposition | Rasel Sir', 'T-VHsVu4tMY')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 9</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 10 | Preposition | Rasel Sir', 'K2VUlYqZneY')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 10</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 11 | Preposition | MCQ Solve | Rasel Sir', 'gAIyivUvi-U')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 11</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Parts of Speech
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 12 | Parts of Speech | Noun and Classification | Taj Sir', 'rkOztpjXQkc')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 12</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 13 | Parts of Speech | Noun and Classification | Taj Sir', 'A5OF1Jzs-B8')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 13</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 14 | Parts of Speech | Noun and Classification | Taj Sir', 'TpjilWmooKs')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 14</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 15 | Parts of Speech | Pronoun and Classification | Taj Sir', 'WlTjmB4T4sE')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 15</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 16 | Parts of Speech | Pronoun and Classification | Taj Sir', 'c7VxrgfTv8M')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 16</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 17 | Parts of Speech | Verb | Taj Sir', '1mSB-bKyboM')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 17</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Narration
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 18 | Narration | Basic to Advance | Shaiful Sir', 'NkOZvkKybV0')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 18</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 19 | Narration | Basic to Advance | Shaiful Sir', '9u3PfInmItQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 19</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 20 | Narration | Basic to Advance | Shaiful Sir', 'YpNC-dnGit4')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 20</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 21 | Narration | Basic to Advance | Shaiful Sir', '1H_F_-6-tgQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 21</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Changing Sentence
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 22 | Part 1 | Changing Sentence | Shaiful Sir', 'f8y2gbo-Gio')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 22</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 23 | Part 2.1 | Changing Sentence | Shaiful Sir', '9LYz2DgzEtg')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 23</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 24 | Part 2.2 | Changing Sentence | Shaiful Sir', 'TPkYrW2WljM')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 24</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 25 | Part 3 | Changing Sentence | Shaiful Sir', 'zaR5Yh1rl88')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 25</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 26 | Part 4 | Changing Sentence | Shaiful Sir', '5kE1kNT1eyw')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 26</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 27 | Part 5 | Changing Sentence | Shaiful Sir', 'iAC1X08FuJ4')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 27</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 28 | Part 6 | Changing Sentence | Board Question Solve | Shaiful Sir', 'pZPEpxZLw7I')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 28</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Pronoun Reference
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 29 | Pronoun Reference | Rasel Sir', 'xm5cXSZe58k')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 29</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 30 | Pronoun Reference | Rasel Sir', '_sDPC5Qkox8')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 30</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Right Form of Verbs
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 31 | Part 1 | Right form of Verbs | Rasel Sir', '4fayyJHIvnY')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 31</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 32 | Part 2 | Right form of Verbs | Rasel Sir', 'b2-NWKjzh74')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 32</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 33 | Part 3 | Right form of Verbs | Rasel Sir', 'IIdt4SqlIDU')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 33</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 34 | Part 4 | Right form of Verbs | Rasel Sir', '9jSUXC4KTR8')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 34</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 35 | Part 5 | Right form of Verbs | Rasel Sir', 'rT7slOeiKz8')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 35</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 36 | Part 6 | Right form of Verbs | Rasel Sir', 'JZgJmJcZKZE')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 36</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 37 | Part 7 | Right form of Verbs | Rasel Sir', 'CwgYDAh2XvM')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 37</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Completing Sentences
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 38 | Part 1 | Completing Sentences | Rasel Sir', 'jb9E0EzA0gM')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 38</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 39 | Part 2 | Completing Sentences | Rasel Sir', 'ooa45a3ZSOQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 39</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 40 | Part 3 | Completing Sentences | Rasel Sir', 'qgnp-_s4xxQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 40</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 41 | Part 4 | Completing Sentences | Rasel Sir', 'hu7LxvyqbkA')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 41</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Sentence Connector
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 42 | Part 1 | Sentence Connector | Shaiful Sir', 'PvVtYvxjjOU')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 42</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 43 | Part 2 | Sentence Connector | Shaiful Sir', 'R2RoAPiEXKU')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 43</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 44 | Part 3 | Sentence Connector | Shaiful Sir', '_jYZrzhwh44')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 44</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Articles
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 45 | Part 1 | Articles (A, An, The) | Shaiful Sir', 'RHJ_rXN3kvs')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 45</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 46 | Part 2 | Articles (A, An, The) | Shaiful Sir', 'vRDrhkm6rLk')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 46</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Cloze Text
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 47 | Part 1 | Cloze Text With Clues | Shaiful Sir', 'd48iA0MEB5Y')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 47</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 48 | Part 2 | Cloze Text With Clues | Shaiful Sir', 'YejESRjUH0I')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 48</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Punctuation
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 49 | Punctuation Marks and Capitalization | Shaiful Sir', '5AmVYH8kvsI')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 49</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Modifier
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 50 | Part 1 | Modifier | Taj Sir', 'E3qHagAgHQ4')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 50</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 51 | Part 2 | Modifier | Taj Sir', 'kWZO4krdcMA')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 51</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 52 | Part 3 | Modifier | Taj Sir', 'c6Jnqtst9rQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 52</span>
+      </div>
+      <div class="video-item" onclick="changeVideo('Class 53 | Part 4 | Modifier | Taj Sir', '7Obe4BX8V-E')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 53</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="dropdown">
+    <button class="dropdown-btn" onclick="toggleDropdown(this)">
+      Writing Part
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <div class="video-item" onclick="changeVideo('Class 54 | Writing Part | Shaiful Sir', 'x2T7MsM5ONQ')">
+        <i class="fas fa-play"></i>
+        <span class="video-item-title">Class 54</span>
+      </div>
+    </div>
+  </div>
+</div>
+  <script>
+    function toggleDropdown(button) {
+      button.classList.toggle('active');
+      const content = button.nextElementSibling;
+      content.classList.toggle('show');
+    }
+    
+    function toggleChapter(button) {
+      button.classList.toggle('active');
+      const content = button.nextElementSibling;
+      content.classList.toggle('show');
+    }
+    
+    function changeVideo(title, videoId) {
+      // Update video
+      const iframe = document.getElementById('videoFrame');
+      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+      
+      // Update title
+      document.getElementById('videoTitle').textContent = title;
+      
+      // Update active state in playlist
+      const allItems = document.querySelectorAll('.video-item');
+      allItems.forEach(item => item.classList.remove('active'));
+      event.currentTarget.classList.add('active');
+      
+      // Scroll to the active item
+      event.currentTarget.scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      });
+    }
+    
+  </script>
 </body>
 </html>
