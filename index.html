@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>EBI 2.0 Complete Course</title>
+  <title>Premium Learning Portal</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
 :root {
@@ -29,8 +30,8 @@ body {
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
   color: #fff;
-  padding: 20px;
   min-height: 100vh;
+  overflow-x: hidden;
   font-size: 14px;
   line-height: 1.6;
 }
@@ -41,76 +42,101 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-.logo-container {
-  text-align: center;
-  margin-bottom: 30px;
-  animation: fadeInDown 0.8s ease-out;
-}
-
-.logo {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 15px;
-  box-shadow: 0 5px 25px rgba(251, 176, 52, 0.4);
-  border: 3px solid var(--accent);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-
-.logo:hover {
-  transform: rotate(10deg) scale(1.05);
-  box-shadow: 0 8px 30px rgba(251, 176, 52, 0.6);
-}
-
-h1 {
-  font-size: 24px;
-  color: var(--accent-light);
-  margin-bottom: 10px;
-  font-weight: 700;
-  text-shadow: 0 2px 10px rgba(249, 212, 35, 0.4);
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  color: var(--white);
-  font-size: 16px;
-  opacity: 0.9;
-  position: relative;
-  display: inline-block;
-}
-
-.subtitle::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
+/* Apple-style loading screens */
+.loading-screen {
+  position: fixed;
+  top: 0;
   left: 0;
   width: 100%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  animation: underlineExpand 2s infinite;
+  height: 100vh;
+  background: linear-gradient(135deg, #0f0c29, #1a1a2e);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  transition: opacity 1s ease;
 }
 
-@keyframes underlineExpand {
-  0% { transform: scaleX(0); opacity: 0; }
-  50% { transform: scaleX(1); opacity: 1; }
-  100% { transform: scaleX(0); opacity: 0; }
+.loading-logo {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 30px;
+  animation: pulse 2s infinite ease-in-out;
 }
 
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.loading-progress {
+  width: 200px;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.loading-progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  transition: width 0.3s ease;
+}
+
+.loading-text {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+/* Microsoft-style particle background */
+.particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255,255,255,0.5);
+  border-radius: 50%;
+  animation: float-up linear infinite;
+}
+
+@keyframes float-up {
+  to { transform: translateY(-100vh); }
+}
+
+/* Google-style material card effects */
 .subjects-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  max-width: 1000px;
-  margin: 0 auto 40px auto;
-  animation: fadeInUp 0.8s ease-out 0.2s both;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  min-height: 100vh;
 }
 
 .subject-card {
   background: var(--glass);
-  border-radius: 20px;
-  padding: 25px;
-  backdrop-filter: blur(12px);
+  border-radius: 24px;
+  padding: 40px 30px;
+  width: 300px;
+  height: 300px;
+  backdrop-filter: blur(16px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   text-align: center;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -118,6 +144,10 @@ h1 {
   border: 1px solid var(--glass-border);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .subject-card::before {
@@ -139,410 +169,348 @@ h1 {
 }
 
 .subject-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-10px) scale(1.05);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.4);
 }
 
 .subject-card:hover::before {
-  transform: rotate(30deg) translate(20%, 20%);
+  transform: rotate(30deg) translate(30%, 30%);
 }
 
 .subject-icon {
-  font-size: 32px;
+  font-size: 48px;
   color: var(--accent);
-  margin-bottom: 15px;
-  text-shadow: 0 0 15px rgba(255, 126, 0, 0.5);
-  transition: transform 0.3s ease;
+  margin-bottom: 25px;
+  text-shadow: 0 0 20px rgba(255, 126, 0, 0.7);
+  transition: all 0.5s ease;
 }
 
 .subject-card:hover .subject-icon {
-  transform: scale(1.2) rotate(10deg);
+  transform: scale(1.3) rotate(15deg);
   color: var(--accent-light);
 }
 
 .subject-name {
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   color: var(--accent-light);
-  margin-bottom: 8px;
-  transition: all 0.3s ease;
+  margin-bottom: 15px;
+  transition: all 0.5s ease;
 }
 
 .subject-card:hover .subject-name {
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  text-shadow: 0 5px 15px rgba(249, 212, 35, 0.5);
 }
 
 .teacher-name {
   color: var(--white);
-  font-size: 14px;
-  opacity: 0.8;
-  transition: all 0.3s ease;
+  font-size: 16px;
+  opacity: 0.9;
+  transition: all 0.5s ease;
 }
 
 .subject-card:hover .teacher-name {
   opacity: 1;
-  transform: translateY(3px);
+  transform: translateY(5px);
 }
 
-.cover-photo {
-  max-width: 90%;
-  display: block;
-  margin: 40px auto 0;
-  border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  animation: float 6s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
-}
-
-.cover-photo:hover {
-  transform: translateY(-15px) scale(1.02);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-}
-
-footer {
-  text-align: center;
-  margin-top: 60px;
-  padding: 20px;
-  font-size: 14px;
-  color: var(--white);
-  opacity: 0.7;
-  position: relative;
-}
-
-footer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-}
-
-/* Progress Bar Container */
-#progressContainer {
+/* Netflix-style fullscreen auth modal */
+.auth-modal {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.9);
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 9999;
   backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
 }
 
-.progress-wrapper {
-  width: 80%;
-  max-width: 500px;
-  background: rgba(255, 255, 255, 0.1);
+.auth-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.auth-container {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
   border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  text-align: center;
-}
-
-.progress-title {
-  color: var(--accent-light);
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 10px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
-  overflow: hidden;
-  margin-bottom: 30px;
-}
-
-.progress-fill {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--accent), var(--accent-light));
-  border-radius: 5px;
-  transition: width 0.5s ease;
-}
-
-#passwordForm {
-  display: none;
-  width: 100%;
-  text-align: center;
-}
-
-#passwordInput {
-  width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 15px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  border-radius: 8px;
-  color: white;
-  font-size: 16px;
-  text-align: center;
-}
-
-#passwordInput:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.submit-btn {
-  background: var(--accent);
-  color: black;
-  border: none;
-  padding: 12px 30px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.submit-btn:hover {
-  background: var(--accent-light);
-  transform: translateY(-2px);
-}
-
-.enrollment-message {
-  display: none;
+  padding: 40px;
   width: 90%;
   max-width: 500px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  text-align: center;
-  border: 2px solid rgba(255, 0, 0, 0.3);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255,255,255,0.1);
+  transform: scale(0.9);
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.enrollment-image {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 20px;
-  border: 3px solid rgba(255, 0, 0, 0.3);
+.auth-modal.active .auth-container {
+  transform: scale(1);
 }
 
-.enrollment-title {
+.auth-title {
+  font-size: 28px;
   color: var(--accent-light);
-  font-size: 22px;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 700;
 }
 
-.enrollment-text {
+.auth-input {
+  width: 100%;
+  padding: 18px 25px;
+  margin-bottom: 25px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 12px;
   color: white;
-  margin-bottom: 20px;
-  line-height: 1.6;
+  font-size: 16px;
+  transition: all 0.3s ease;
 }
 
-.enrollment-btn {
-  background: var(--accent);
-  color: black;
+.auth-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(255,126,0,0.2);
+}
+
+.auth-btn {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-light));
+  color: #000;
   border: none;
-  padding: 12px 30px;
-  border-radius: 8px;
-  font-weight: 600;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
+  margin-top: 10px;
 }
 
-.enrollment-btn:hover {
-  background: var(--accent-light);
-  transform: translateY(-2px);
+.auth-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(255,126,0,0.3);
 }
 
-/* Animations */
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+<!-- Add this HTML where the wave container was -->
+<div class="gradient-border"></div>
+
+<style>
+/* Gradient border animation */
+.gradient-border {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, 
+    var(--primary), 
+    var(--accent), 
+    var(--accent-light), 
+    var(--primary));
+  background-size: 300% 100%;
+  z-index: 10;
+  animation: gradientFlow 8s ease infinite;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-  .subjects-container {
-    grid-template-columns: 1fr;
-    gap: 15px;
-    max-width: 400px;
+  .subject-card {
+    width: 280px;
+    height: 280px;
+    padding: 30px 20px;
   }
   
-  .logo {
-    width: 90px;
-    height: 90px;
+  .subject-icon {
+    font-size: 40px;
   }
   
-  h1 {
+  .subject-name {
     font-size: 20px;
   }
   
-  .subject-card {
-    padding: 20px;
+  .auth-container {
+    padding: 30px;
   }
   
-  .cover-photo {
-    max-width: 95%;
-  }
-  
-  .progress-wrapper, .enrollment-message {
-    width: 90%;
-    padding: 20px;
+  .auth-title {
+    font-size: 24px;
   }
 }
 
 @media (max-width: 480px) {
-  body {
+  .subject-card {
+    width: 100%;
+    max-width: 280px;
+    height: 250px;
+  }
+  
+  .loading-logo {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .auth-container {
+    padding: 25px 20px;
+  }
+  
+  .auth-input {
+    padding: 15px 20px;
+  }
+  
+  .auth-btn {
     padding: 15px;
-  }
-  
-  .logo-container {
-    margin-bottom: 20px;
-  }
-  
-  .subject-name {
-    font-size: 16px;
-  }
-  
-  .progress-title, .enrollment-title {
-    font-size: 20px;
   }
 }
   </style>
 </head>
 <body>
-  <div class="logo-container">
-    <img src="https://media.licdn.com/dms/image/v2/D560BAQGKyPPU-RqEGw/company-logo_200_200/company-logo_200_200/0/1716019885470/fahadstutorialofficial_logo?e=2147483647&v=beta&t=E70h0bGad7r7w2Q_xuznEMA3B-D5BbpTbGufk9C4H60" alt="Fahad's Tutorial Logo" class="logo" />
-    <h1>EBI 2.0 COMPLETE COURSE</h1>
-    <p class="subtitle">Select a subject to begin</p>
+  <!-- Initial Loading Screen (Apple-style) -->
+  <div class="loading-screen" id="initialLoading">
+    <div class="loading-logo">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="45" fill="none" stroke="var(--accent)" stroke-width="8" stroke-dasharray="283" stroke-dashoffset="283">
+          <animate attributeName="stroke-dashoffset" from="283" to="0" dur="1.5s" fill="freeze" />
+        </circle>
+      </svg>
+    </div>
+    <div class="loading-progress">
+      <div class="loading-progress-bar" id="initialProgress"></div>
+    </div>
+    <div class="loading-text">Initializing learning environment</div>
   </div>
 
-  <div class="subjects-container">
-    <!-- Bangla Prothom Potro -->
-    <div class="subject-card" onclick="loadSubject('বাংলা প্রথম পত্র', 'ben1.html')">
-      <div class="subject-icon"><i class="fas fa-book-open"></i></div>
-      <div class="subject-name">বাংলা প্রথম পত্র</div>
-      <div class="teacher-name">সাকিব হাসান</div>
-    </div>
-
-    <!-- Bangla Ditiyo Potro -->
-    <div class="subject-card" onclick="loadSubject('বাংলা দ্বিতীয় পত্র', 'ben2.html')">
-      <div class="subject-icon"><i class="fas fa-book"></i></div>
-      <div class="subject-name">বাংলা দ্বিতীয় পত্র</div>
-      <div class="teacher-name">সাকিব হাসান</div>
-    </div>
-
-    <!-- Engreji Prothom Potro -->
-    <div class="subject-card" onclick="loadSubject('ইংরেজি প্রথম পত্র', 'eng1.html')">
-      <div class="subject-icon"><i class="fas fa-language"></i></div>
-      <div class="subject-name">ইংরেজি প্রথম পত্র</div>
-      <div class="teacher-name">সাইফুল ইসলাম রাসেল</div>
-    </div>
-
-    <!-- Engreji Ditiyo Potro -->
-    <div class="subject-card" onclick="loadSubject('ইংরেজি দ্বিতীয় পত্র', 'eng2.html')">
-      <div class="subject-icon"><i class="fas fa-spell-check"></i></div>
-      <div class="subject-name">ইংরেজি দ্বিতীয় পত্র</div>
-      <div class="teacher-name">সাইফুল ইসলাম</div>
-    </div>
-
-    <!-- Tottho o Jogajog Projukti -->
-    <div class="subject-card" onclick="loadSubject('তথ্য ও যোগাযোগ প্রযুক্তি', 'ict.html')">
-      <div class="subject-icon"><i class="fas fa-laptop-code"></i></div>
-      <div class="subject-name">তথ্য ও যোগাযোগ প্রযুক্তি</div>
-      <div class="teacher-name">মোস্তাফিজুর রহমান সানি</div>
-    </div>
-  </div>
-
-  <img class="cover-photo" src="https://i.ytimg.com/vi/IV6k5HrWQ8w/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLARoVRRHtm0x8-ZEaECegld5EEOdg" alt="Course Cover Photo" />
-
-  <footer>
-    <p>© 2025 Fahad's Tutorial - EBI 2.0 Complete Course</p>
-  </footer>
-
-  <!-- Progress Bar and Password Container -->
-  <div id="progressContainer">
-    <div class="progress-wrapper">
-      <div class="progress-title">লোড হচ্ছে...</div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-      <div id="passwordForm">
-        <input type="password" id="passwordInput" placeholder="আপনার রেজিস্ট্রেশন নম্বর দিন" />
-        <button class="submit-btn" onclick="checkPassword()">সাবমিট করুন</button>
-      </div>
-    </div>
+  <!-- Main Content (hidden initially) -->
+  <div id="mainContent" style="display: none;">
+    <!-- Particle Background (Microsoft-style) -->
+    <div class="particles" id="particles"></div>
     
-    <div class="enrollment-message" id="enrollmentMessage">
-      <img src="https://th.bing.com/th/id/OIP._8ReA_6PJbywLbkhVn1ErAHaNK?rs=1&pid=ImgDetMain" class="enrollment-image" />
-      <h2 class="enrollment-title">দুঃখিত!</h2>
-      <p class="enrollment-text">
-        আপনি এখনও EBI 2.0 কোর্সে এনরোল করেননি। এই এক্সক্লুসিভ কোর্সে এনরোল করে HSC 2026-এর জন্য সম্পূর্ণ প্রস্তুতি নিন। আমাদের বিশেষজ্ঞ শিক্ষকদের গাইডেন্সে এখনই এনরোল করুন এবং সাফল্যের পথে এগিয়ে যান!
-      </p>
-      <a href="https://www.ft.education/page/hsc2026" class="enrollment-btn" target="_blank">এখনই এনরোল করুন</a>
+<div class="gradient-border"></div>
+    
+    <!-- Subject Cards (Google-style) -->
+    <div class="subjects-container">
+      <!-- Bangla Prothom Potro -->
+      <div class="subject-card" onclick="loadSubject('বাংলা প্রথম পত্র', 'ben1.html')">
+        <div class="subject-icon"><i class="fas fa-book-open"></i></div>
+        <div class="subject-name">বাংলা প্রথম পত্র</div>
+        <div class="teacher-name">সাকিব হাসান</div>
+      </div>
+
+      <!-- Bangla Ditiyo Potro -->
+      <div class="subject-card" onclick="loadSubject('বাংলা দ্বিতীয় পত্র', 'ben2.html')">
+        <div class="subject-icon"><i class="fas fa-book"></i></div>
+        <div class="subject-name">বাংলা দ্বিতীয় পত্র</div>
+        <div class="teacher-name">সাকিব হাসান</div>
+      </div>
+
+      <!-- Engreji Prothom Potro -->
+      <div class="subject-card" onclick="loadSubject('ইংরেজি প্রথম পত্র', 'eng1.html')">
+        <div class="subject-icon"><i class="fas fa-language"></i></div>
+        <div class="subject-name">ইংরেজি প্রথম পত্র</div>
+        <div class="teacher-name">সাইফুল ইসলাম রাসেল</div>
+      </div>
+
+      <!-- Engreji Ditiyo Potro -->
+      <div class="subject-card" onclick="loadSubject('ইংরেজি দ্বিতীয় পত্র', 'eng2.html')">
+        <div class="subject-icon"><i class="fas fa-spell-check"></i></div>
+        <div class="subject-name">ইংরেজি দ্বিতীয় পত্র</div>
+        <div class="teacher-name">সাইফুল ইসলাম</div>
+      </div>
+
+      <!-- Tottho o Jogajog Projukti -->
+      <div class="subject-card" onclick="loadSubject('তথ্য ও যোগাযোগ প্রযুক্তি', 'ict.html')">
+        <div class="subject-icon"><i class="fas fa-laptop-code"></i></div>
+        <div class="subject-name">তথ্য ও যোগাযোগ প্রযুক্তি</div>
+        <div class="teacher-name">মোস্তাফিজুর রহমান সানি</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Authentication Modal (Netflix-style) -->
+  <div class="auth-modal" id="authModal">
+    <div class="auth-container">
+      <h2 class="auth-title">Access Your Learning Portal</h2>
+      <input type="password" class="auth-input" id="authPassword" placeholder="Enter your registration ID" />
+      <button class="auth-btn" onclick="checkAuth()">Continue</button>
+      <div id="authError" style="color: #ff6b6b; margin-top: 15px; display: none;">Invalid credentials. Please try again.</div>
     </div>
   </div>
 
 <script>
-  // Show progress bar immediately
+  // Initial loading animation (Apple-style)
   document.addEventListener('DOMContentLoaded', function() {
-    // Check if user has already passed password check
-    if(sessionStorage.getItem('authenticated') === 'true') {
-      document.getElementById('progressContainer').style.display = 'none';
-      return;
-    }
-    
-    // Start progress animation
-    const progressFill = document.getElementById('progressFill');
+    // Simulate initial loading
     let progress = 0;
-    const progressInterval = setInterval(() => {
+    const progressBar = document.getElementById('initialProgress');
+    const loadingInterval = setInterval(() => {
       progress += 1;
-      progressFill.style.width = progress + '%';
+      progressBar.style.width = progress + '%';
       
-      if(progress >= 50) {
-        clearInterval(progressInterval);
-        showPasswordForm();
+      if(progress >= 100) {
+        clearInterval(loadingInterval);
+        document.getElementById('initialLoading').style.opacity = '0';
+        setTimeout(() => {
+          document.getElementById('initialLoading').style.display = 'none';
+          document.getElementById('mainContent').style.display = 'block';
+          
+          // Initialize particles (Microsoft-style)
+          createParticles();
+          
+          // Show auth modal after a delay (Netflix-style)
+          setTimeout(() => {
+            document.getElementById('authModal').classList.add('active');
+          }, 500);
+        }, 1000);
       }
     }, 30);
   });
-  
-  function showPasswordForm() {
-    document.getElementById('passwordForm').style.display = 'block';
-    document.querySelector('.progress-title').textContent = 'রেজিস্ট্রেশন নম্বর দিন';
+
+  // Create particle background (Microsoft-style)
+  function createParticles() {
+    const container = document.getElementById('particles');
+    const particleCount = window.innerWidth < 768 ? 30 : 50;
+    
+    for(let i = 0; i < particleCount; i++) {
+      const particle = document.createElement('div');
+      particle.classList.add('particle');
+      
+      // Random properties
+      const size = Math.random() * 5 + 2;
+      const posX = Math.random() * window.innerWidth;
+      const posY = Math.random() * window.innerHeight;
+      const opacity = Math.random() * 0.5 + 0.1;
+      const duration = Math.random() * 20 + 10;
+      const delay = Math.random() * 5;
+      
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.left = `${posX}px`;
+      particle.style.top = `${posY}px`;
+      particle.style.opacity = opacity;
+      particle.style.animationDuration = `${duration}s`;
+      particle.style.animationDelay = `${delay}s`;
+      
+      container.appendChild(particle);
+    }
   }
-  
-  function checkPassword() {
-    const password = document.getElementById('passwordInput').value.trim();
+
+  // Authentication check (Netflix-style)
+  function checkAuth() {
+    const password = document.getElementById('authPassword').value.trim();
     const validPasswords = [
       '2114304246', 
       '2114304391',
@@ -550,55 +518,74 @@ footer::before {
     ];
     
     if(validPasswords.includes(password)) {
-      // Correct password
-      sessionStorage.setItem('authenticated', 'true');
+      // Correct password - animate success
+      document.getElementById('authError').style.display = 'none';
+      document.querySelector('.auth-container').style.transform = 'scale(0.9)';
+      document.getElementById('authModal').style.opacity = '0';
       
-      // Continue progress to 100%
-      const progressFill = document.getElementById('progressFill');
-      let progress = 50;
-      const progressInterval = setInterval(() => {
-        progress += 1;
-        progressFill.style.width = progress + '%';
-        
-        if(progress >= 100) {
-          clearInterval(progressInterval);
-          document.getElementById('progressContainer').style.display = 'none';
-        }
-      }, 20);
+      setTimeout(() => {
+        document.getElementById('authModal').style.display = 'none';
+      }, 500);
+      
+      // Store authentication
+      sessionStorage.setItem('authenticated', 'true');
     } else {
-      // Wrong password
-      document.querySelector('.progress-wrapper').style.display = 'none';
-      document.getElementById('enrollmentMessage').style.display = 'block';
+      // Wrong password - show error
+      document.getElementById('authError').style.display = 'block';
+      document.querySelector('.auth-container').style.animation = 'shake 0.5s';
+      setTimeout(() => {
+        document.querySelector('.auth-container').style.animation = '';
+      }, 500);
     }
   }
-  
+
+  // Load subject with authentication check
   function loadSubject(subjectName, filePath) {
-    // Check authentication first
     if(sessionStorage.getItem('authenticated') !== 'true') {
-      document.getElementById('progressContainer').style.display = 'flex';
-      document.querySelector('.progress-wrapper').style.display = 'block';
-      document.getElementById('enrollmentMessage').style.display = 'none';
-      document.getElementById('passwordForm').style.display = 'none';
-      document.getElementById('progressFill').style.width = '0%';
-      
-      // Restart progress animation
-      const progressFill = document.getElementById('progressFill');
-      let progress = 0;
-      const progressInterval = setInterval(() => {
-        progress += 1;
-        progressFill.style.width = progress + '%';
-        
-        if(progress >= 50) {
-          clearInterval(progressInterval);
-          showPasswordForm();
-        }
-      }, 30);
+      document.getElementById('authModal').classList.add('active');
       return;
     }
     
-    // If authenticated, load the subject
-    window.location.href = filePath;
+    // Create loading screen for subject
+    const subjectLoading = document.createElement('div');
+    subjectLoading.className = 'loading-screen';
+    subjectLoading.innerHTML = `
+      <div class="loading-logo">
+        <i class="fas fa-book-open" style="font-size: 60px; color: var(--accent)"></i>
+      </div>
+      <div class="loading-progress">
+        <div class="loading-progress-bar" id="subjectProgress"></div>
+      </div>
+      <div class="loading-text">Loading ${subjectName}</div>
+    `;
+    document.body.appendChild(subjectLoading);
+    
+    // Animate progress
+    let progress = 0;
+    const progressBar = subjectLoading.querySelector('#subjectProgress');
+    const loadingInterval = setInterval(() => {
+      progress += 2;
+      progressBar.style.width = progress + '%';
+      
+      if(progress >= 100) {
+        clearInterval(loadingInterval);
+        setTimeout(() => {
+          window.location.href = filePath;
+        }, 500);
+      }
+    }, 30);
   }
+
+  // Add shake animation for auth error
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+      20%, 40%, 60%, 80% { transform: translateX(10px); }
+    }
+  `;
+  document.head.appendChild(style);
 </script>
 </body>
 </html>
