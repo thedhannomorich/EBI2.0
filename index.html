@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -6,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Premium Learning Portal</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
   <style>
 :root {
   --primary: #4b9cd3;
@@ -34,6 +34,7 @@ body {
   overflow-x: hidden;
   font-size: 14px;
   line-height: 1.6;
+  position: relative;
 }
 
 @keyframes gradientBG {
@@ -47,7 +48,7 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background: linear-gradient(135deg, #0f0c29, #1a1a2e);
   display: flex;
@@ -63,6 +64,9 @@ body {
   height: 120px;
   margin-bottom: 30px;
   animation: pulse 2s infinite ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes pulse {
@@ -93,6 +97,7 @@ body {
   letter-spacing: 1px;
   text-transform: uppercase;
   margin-top: 20px;
+  text-align: center;
 }
 
 /* Microsoft-style particle background */
@@ -100,10 +105,11 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   z-index: -1;
   pointer-events: none;
+  overflow: hidden;
 }
 
 .particle {
@@ -122,7 +128,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   gap: 30px;
   max-width: 1200px;
   margin: 0 auto;
@@ -135,7 +141,7 @@ body {
   border-radius: 24px;
   padding: 40px 30px;
   width: 300px;
-  height: 300px;
+  min-height: 300px;
   backdrop-filter: blur(16px);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   text-align: center;
@@ -216,12 +222,28 @@ body {
   transform: translateY(5px);
 }
 
+/* Add some extra UI elements */
+.subject-card .subject-description {
+  font-size: 14px;
+  color: #fff;
+  opacity: 0.7;
+  margin-bottom: 8px;
+  margin-top: 6px;
+}
+.subject-meta {
+  font-size: 12px;
+  color: #fff;
+  opacity: 0.5;
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+
 /* Netflix-style fullscreen auth modal */
 .auth-modal {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   background: rgba(0,0,0,0.95);
   z-index: 9999;
@@ -300,16 +322,12 @@ body {
   box-shadow: 0 10px 20px rgba(255,126,0,0.3);
 }
 
-<!-- Add this HTML where the wave container was -->
-<div class="gradient-border"></div>
-
-<style>
 /* Gradient border animation */
 .gradient-border {
   position: fixed;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 4px;
   background: linear-gradient(90deg, 
     var(--primary), 
@@ -328,53 +346,94 @@ body {
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
+  .subjects-container {
+    gap: 15px;
+  }
   .subject-card {
-    width: 280px;
-    height: 280px;
-    padding: 30px 20px;
-  }
-  
-  .subject-icon {
-    font-size: 40px;
-  }
-  
-  .subject-name {
-    font-size: 20px;
-  }
-  
-  .auth-container {
-    padding: 30px;
-  }
-  
-  .auth-title {
-    font-size: 24px;
+    width: 250px;
+    min-height: 250px;
+    padding: 25px 14px;
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .subject-card {
-    width: 100%;
-    max-width: 280px;
-    height: 250px;
+    width: 220px;
+    min-height: 220px;
+    padding: 20px 9px;
   }
-  
-  .loading-logo {
-    width: 80px;
-    height: 80px;
+  .subject-icon {
+    font-size: 38px;
   }
-  
+  .subject-name {
+    font-size: 18px;
+  }
   .auth-container {
-    padding: 25px 20px;
+    padding: 24px;
   }
-  
+  .auth-title {
+    font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .subjects-container {
+    padding: 10px 2px;
+  }
+  .subject-card {
+    width: 98vw;
+    max-width: 98vw;
+    min-height: 140px;
+    padding: 13px 4px;
+  }
+  .loading-logo {
+    width: 60px;
+    height: 60px;
+  }
+  .auth-container {
+    padding: 16px 5px;
+  }
   .auth-input {
-    padding: 15px 20px;
+    padding: 8px 10px;
   }
-  
   .auth-btn {
-    padding: 15px;
+    padding: 10px;
   }
+}
+
+/* Shake animation for auth error */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
+  20%, 40%, 60%, 80% { transform: translateX(10px); }
+}
+
+/* Extra UI: Footer */
+.site-footer {
+  width: 100vw;
+  padding: 20px 0 10px 0;
+  background: linear-gradient(90deg, #1a1a2e, #302b63 60%, #1a1a2e);
+  color: #fff;
+  text-align: center;
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: 30px;
+  z-index: 100;
+}
+.site-footer .footer-links {
+  margin-top: 6px;
+  font-size: 15px;
+}
+.site-footer .footer-links a {
+  color: var(--accent-light);
+  text-decoration: underline;
+  margin: 0 10px;
+}
+.site-footer .footer-brand {
+  font-size: 17px;
+  color: var(--accent-light);
+  font-weight: bold;
+  letter-spacing: 2px;
 }
   </style>
 </head>
@@ -398,59 +457,100 @@ body {
   <div id="mainContent" style="display: none;">
     <!-- Particle Background (Microsoft-style) -->
     <div class="particles" id="particles"></div>
-    
-<div class="gradient-border"></div>
-    
+    <div class="gradient-border"></div>
+    <!-- Site heading -->
+    <header style="width:100%; text-align:center; margin-bottom:12px; margin-top:18px;">
+      <h1 style="font-size:2.3rem; color:var(--accent-light); font-family:'Poppins',sans-serif; letter-spacing:1.5px; text-shadow:0 2px 10px rgba(255,126,0,0.3);">
+        <i class="fas fa-graduation-cap"></i> Premium Learning Portal
+      </h1>
+      <p style="color:#fff; opacity:0.75; font-size:1.1rem; margin-top:7px;">নিজের শিক্ষার পথকে আরও স্মার্ট করুন!</p>
+    </header>
     <!-- Subject Cards (Google-style) -->
     <div class="subjects-container">
       <!-- Bangla Prothom Potro -->
       <div class="subject-card" onclick="loadSubject('বাংলা প্রথম পত্র', 'ben1.html')">
         <div class="subject-icon"><i class="fas fa-book-open"></i></div>
         <div class="subject-name">বাংলা প্রথম পত্র</div>
+        <div class="subject-description">গদ্য, কবিতা, নাটক ও উপন্যাস</div>
         <div class="teacher-name">সাকিব হাসান</div>
+        <div class="subject-meta"><i class="fas fa-users"></i> 2.5K+ students</div>
       </div>
-
       <!-- Bangla Ditiyo Potro -->
       <div class="subject-card" onclick="loadSubject('বাংলা দ্বিতীয় পত্র', 'ben2.html')">
         <div class="subject-icon"><i class="fas fa-book"></i></div>
         <div class="subject-name">বাংলা দ্বিতীয় পত্র</div>
+        <div class="subject-description">ব্যাকরণ ও রচনাশৈলী</div>
         <div class="teacher-name">সাকিব হাসান</div>
+        <div class="subject-meta"><i class="fas fa-users"></i> 1.5K+ students</div>
       </div>
-
       <!-- Engreji Prothom Potro -->
       <div class="subject-card" onclick="loadSubject('ইংরেজি প্রথম পত্র', 'eng1.html')">
         <div class="subject-icon"><i class="fas fa-language"></i></div>
         <div class="subject-name">ইংরেজি প্রথম পত্র</div>
+        <div class="subject-description">Passage, Poetry and Writings</div>
         <div class="teacher-name">সাইফুল ইসলাম রাসেল</div>
+        <div class="subject-meta"><i class="fas fa-users"></i> 2.2K+ students</div>
       </div>
-
       <!-- Engreji Ditiyo Potro -->
       <div class="subject-card" onclick="loadSubject('ইংরেজি দ্বিতীয় পত্র', 'eng2.html')">
         <div class="subject-icon"><i class="fas fa-spell-check"></i></div>
         <div class="subject-name">ইংরেজি দ্বিতীয় পত্র</div>
+        <div class="subject-description">Grammar & Writing</div>
         <div class="teacher-name">সাইফুল ইসলাম</div>
+        <div class="subject-meta"><i class="fas fa-users"></i> 3K+ students</div>
       </div>
-
       <!-- Tottho o Jogajog Projukti -->
       <div class="subject-card" onclick="loadSubject('তথ্য ও যোগাযোগ প্রযুক্তি', 'ict.html')">
         <div class="subject-icon"><i class="fas fa-laptop-code"></i></div>
         <div class="subject-name">তথ্য ও যোগাযোগ প্রযুক্তি</div>
+        <div class="subject-description">Codings & Numbers</div>
         <div class="teacher-name">মোস্তাফিজুর রহমান সানি</div>
+        <div class="subject-meta"><i class="fas fa-users"></i> 125+ students</div>
       </div>
     </div>
+    <!-- Motivational Quote Banner -->
+    <div style="width:100%; max-width:650px; margin:25px auto 0 auto; background:rgba(255,255,255,0.08); border-radius:16px; padding:18px 25px; text-align:center; box-shadow:0 2px 16px rgba(0,0,0,0.10); border:1px solid var(--glass-border);">
+      <i class="fas fa-lightbulb" style="color:var(--accent);font-size:1.5em;margin-right:9px;"></i>
+      <span style="color:var(--accent-light);font-size:1.15em;font-weight:600;">"শেখার কোনো শেষ নেই, শেখা চলতেই থাকে..."</span>
+      <div style="color:#fff; opacity:0.75; margin-top:5px; font-size:1em;">- Premium Learning Portal</div>
+    </div>
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-brand"><i class="fas fa-graduation-cap"></i> Premium Learning Portal</div>
+      <div class="footer-links">
+        <a href="#">হোম</a> |
+        <a href="#">সহায়িকা</a> |
+        <a href="#">যোগাযোগ</a>
+      </div>
+      <div style="margin-top:7px; font-size:13px; opacity:0.6;">&copy; 2025 | Developed by thedhannomorich | Inspired by Apple, Microsoft, Google, Netflix</div>
+    </footer>
   </div>
 
   <!-- Authentication Modal (Netflix-style) -->
   <div class="auth-modal" id="authModal">
     <div class="auth-container">
       <h2 class="auth-title">Access Your Learning Portal</h2>
-      <input type="password" class="auth-input" id="authPassword" placeholder="Enter your registration ID" />
+      <input type="password" class="auth-input" id="authPassword" placeholder="Enter your registration ID" autocomplete="current-password" />
       <button class="auth-btn" onclick="checkAuth()">Continue</button>
       <div id="authError" style="color: #ff6b6b; margin-top: 15px; display: none;">Invalid credentials. Please try again.</div>
     </div>
   </div>
 
 <script>
+  // Remove any loading screen left by subpages
+  window.addEventListener('DOMContentLoaded', function() {
+    // Remove lingering loading screens from previous navigations
+    let lingeringLoaders = document.querySelectorAll('.loading-screen:not(#initialLoading)');
+    lingeringLoaders.forEach(el => el.parentNode.removeChild(el));
+    // Remove subject loading if present (e.g. user came back from another page)
+    let lingeringSubjectLoader = document.getElementById('subjectLoadingScreen');
+    if (lingeringSubjectLoader) lingeringSubjectLoader.remove();
+    // Hide main initial loader if it somehow lingers
+    document.getElementById('initialLoading').style.opacity = '1';
+    document.getElementById('initialLoading').style.display = 'flex';
+    document.getElementById('mainContent').style.display = 'none';
+  });
+
   // Initial loading animation (Apple-style)
   document.addEventListener('DOMContentLoaded', function() {
     // Simulate initial loading
@@ -459,35 +559,45 @@ body {
     const loadingInterval = setInterval(() => {
       progress += 1;
       progressBar.style.width = progress + '%';
-      
       if(progress >= 100) {
         clearInterval(loadingInterval);
         document.getElementById('initialLoading').style.opacity = '0';
         setTimeout(() => {
           document.getElementById('initialLoading').style.display = 'none';
           document.getElementById('mainContent').style.display = 'block';
-          
-          // Initialize particles (Microsoft-style)
-          createParticles();
-          
+          createParticles(); // Initialize particles (Microsoft-style)
           // Show auth modal after a delay (Netflix-style)
           setTimeout(() => {
-            document.getElementById('authModal').classList.add('active');
+            if (!sessionStorage.getItem('authenticated')) {
+              document.getElementById('authModal').classList.add('active');
+              document.getElementById('authPassword').focus();
+            }
           }, 500);
-        }, 1000);
+        }, 800);
       }
-    }, 30);
+    }, 18);
+  });
+
+  // Remove lingering loader when returning from subpages (fix: loader persists bug)
+  window.addEventListener('pageshow', function(event) {
+    // Remove any extra loading screens if they exist
+    document.querySelectorAll('.loading-screen:not(#initialLoading)').forEach(el => el.remove());
+    // Remove subject loader if present
+    let subjectLoader = document.getElementById('subjectLoadingScreen');
+    if(subjectLoader) subjectLoader.remove();
+    // Also, if initialLoader is visible, hide it (extra safety)
+    let initialLoader = document.getElementById('initialLoading');
+    if (initialLoader && initialLoader.style.opacity === '0') initialLoader.style.display = 'none';
   });
 
   // Create particle background (Microsoft-style)
   function createParticles() {
     const container = document.getElementById('particles');
-    const particleCount = window.innerWidth < 768 ? 30 : 50;
-    
+    container.innerHTML = ''; // Clear any existing
+    const particleCount = window.innerWidth < 768 ? 25 : 45;
     for(let i = 0; i < particleCount; i++) {
       const particle = document.createElement('div');
       particle.classList.add('particle');
-      
       // Random properties
       const size = Math.random() * 5 + 2;
       const posX = Math.random() * window.innerWidth;
@@ -495,7 +605,6 @@ body {
       const opacity = Math.random() * 0.5 + 0.1;
       const duration = Math.random() * 20 + 10;
       const delay = Math.random() * 5;
-      
       particle.style.width = `${size}px`;
       particle.style.height = `${size}px`;
       particle.style.left = `${posX}px`;
@@ -503,7 +612,6 @@ body {
       particle.style.opacity = opacity;
       particle.style.animationDuration = `${duration}s`;
       particle.style.animationDelay = `${delay}s`;
-      
       container.appendChild(particle);
     }
   }
@@ -516,17 +624,16 @@ body {
       '2114304391',
       // Add more passwords here if needed
     ];
-    
     if(validPasswords.includes(password)) {
       // Correct password - animate success
       document.getElementById('authError').style.display = 'none';
       document.querySelector('.auth-container').style.transform = 'scale(0.9)';
       document.getElementById('authModal').style.opacity = '0';
-      
       setTimeout(() => {
         document.getElementById('authModal').style.display = 'none';
-      }, 500);
-      
+        document.getElementById('authModal').classList.remove('active');
+        document.querySelector('.auth-container').style.transform = 'scale(1)';
+      }, 450);
       // Store authentication
       sessionStorage.setItem('authenticated', 'true');
     } else {
@@ -536,19 +643,31 @@ body {
       setTimeout(() => {
         document.querySelector('.auth-container').style.animation = '';
       }, 500);
+      sessionStorage.removeItem('authenticated');
     }
   }
+
+  // Hide login modal on Enter key
+  document.addEventListener('keydown', function(e) {
+    if(document.getElementById('authModal').classList.contains('active') && (e.key === 'Enter')) {
+      checkAuth();
+    }
+  });
 
   // Load subject with authentication check
   function loadSubject(subjectName, filePath) {
     if(sessionStorage.getItem('authenticated') !== 'true') {
       document.getElementById('authModal').classList.add('active');
+      document.getElementById('authPassword').focus();
       return;
     }
-    
+    // Remove any existing subject loading screen
+    let prevLoader = document.getElementById('subjectLoadingScreen');
+    if (prevLoader) prevLoader.remove();
     // Create loading screen for subject
     const subjectLoading = document.createElement('div');
     subjectLoading.className = 'loading-screen';
+    subjectLoading.id = 'subjectLoadingScreen';
     subjectLoading.innerHTML = `
       <div class="loading-logo">
         <i class="fas fa-book-open" style="font-size: 60px; color: var(--accent)"></i>
@@ -559,33 +678,45 @@ body {
       <div class="loading-text">Loading ${subjectName}</div>
     `;
     document.body.appendChild(subjectLoading);
-    
     // Animate progress
     let progress = 0;
     const progressBar = subjectLoading.querySelector('#subjectProgress');
     const loadingInterval = setInterval(() => {
       progress += 2;
       progressBar.style.width = progress + '%';
-      
       if(progress >= 100) {
         clearInterval(loadingInterval);
         setTimeout(() => {
+          // Clean up loader before navigating
+          subjectLoading.remove();
           window.location.href = filePath;
-        }, 500);
+        }, 400);
       }
-    }, 30);
+    }, 18);
   }
 
-  // Add shake animation for auth error
-  const style = document.createElement('style');
-  style.textContent = `
-    @keyframes shake {
-      0%, 100% { transform: translateX(0); }
-      10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }
-      20%, 40%, 60%, 80% { transform: translateX(10px); }
+  // Extra: Auto-hide auth modal if already authenticated
+  document.addEventListener('DOMContentLoaded', function() {
+    if (sessionStorage.getItem('authenticated') === 'true') {
+      document.getElementById('authModal').style.display = 'none';
+      document.getElementById('authModal').classList.remove('active');
     }
-  `;
-  document.head.appendChild(style);
+  });
+
+  // Prevent scrolling when loading/auth modal is active
+  function setBodyNoScroll(active) {
+    if (active) document.body.style.overflow = 'hidden';
+    else document.body.style.overflow = '';
+  }
+  // Observe modal and loading screen visibility
+  const observer = new MutationObserver(function() {
+    const modalActive = document.getElementById('authModal').classList.contains('active');
+    const loadingActive = document.getElementById('initialLoading').style.display !== 'none'
+      || !!document.getElementById('subjectLoadingScreen');
+    setBodyNoScroll(modalActive || loadingActive);
+  });
+  observer.observe(document.body, { childList: true, subtree: true, attributes: true });
+
 </script>
 </body>
 </html>
