@@ -1,23 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="bn">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>বাংলা প্রথম পত্র | ACS</title>
+  <title>বাংলা প্রথম পত্র | Fahad's Tutorial</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
 :root {
-  --primary: #2c5e92;
+  --primary: #4b9cd3;
   --primary-dark: #1a3a8f;
-  --accent: #e67e22;
+  --accent: #ff7e00;
+  --accent-light: #f9d423;
   --white: #ffffff;
-  --light-gray: #f5f7fa;
-  --medium-gray: #e1e5eb;
-  --dark-gray: #6c757d;
-  --text-dark: #343a40;
-  --shadow: 0 4px 24px rgba(44, 94, 146, 0.10), 0 1.5px 10px rgba(44, 94, 146, 0.07);
-  --transition: all 0.38s cubic-bezier(.4,1,.22,1);
-  --spring: cubic-bezier(.2, 1.1, .38, 1);
+  --glass: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
 }
 
 * {
@@ -28,41 +26,35 @@
 }
 
 body {
-  background: linear-gradient(120deg, var(--light-gray) 70%, var(--primary) 200%);
-  color: var(--text-dark);
+  background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #fff;
   padding: 20px;
   min-height: 100vh;
   font-size: 14px;
   line-height: 1.6;
-  transition: var(--transition);
-  animation: bodyFadeIn 1.2s var(--spring);
 }
 
-@keyframes bodyFadeIn {
-  from { opacity: 0; filter: blur(4px) }
-  to { opacity: 1; filter: blur(0); }
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .header {
   text-align: center;
   margin-bottom: 30px;
-  position: relative;
-  padding-top: 10px;
-  animation: fadeInDown 0.9s var(--spring);
-}
-
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-40px); }
-  to { opacity: 1; transform: translateY(0); }
+  animation: fadeInDown 0.8s ease-out;
 }
 
 .back-btn {
   position: absolute;
-  left: 0;
-  top: 0;
-  background: var(--white);
-  border: 1px solid var(--medium-gray);
-  color: var(--primary);
+  left: 20px;
+  top: 20px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: var(--accent-light);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -70,286 +62,160 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: var(--transition);
-  box-shadow: var(--shadow);
-  z-index: 2;
-  animation: popBtn 0.7s var(--spring);
-}
-
-@keyframes popBtn {
-  0% { transform: scale(.5) rotate(-30deg); opacity: 0; }
-  100% { transform: scale(1) rotate(0); opacity: 1; }
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
 }
 
 .back-btn:hover {
-  background: var(--primary);
-  color: white;
-  transform: scale(1.09) translateY(-2px);
-  box-shadow: 0 6px 24px rgba(44,94,146,0.18);
+  background: var(--accent);
+  transform: translateX(-5px);
 }
 
 h1 {
-  font-size: 26px;
-  color: var(--primary);
+  font-size: 24px;
+  color: var(--accent-light);
   margin-bottom: 10px;
   font-weight: 700;
+  text-shadow: 0 2px 10px rgba(249, 212, 35, 0.4);
   letter-spacing: 1px;
-  text-shadow: 0 2px 20px rgba(44,94,146,0.07);
-  animation: shine 1.5s both;
-}
-
-@keyframes shine {
-  from { background: linear-gradient(90deg, var(--primary) 30%, #fff 60%, var(--primary) 90%);
-          background-size: 200% 100%;
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-          background-clip: text;
-          text-fill-color: transparent;
-          background-position: 200% 0; }
-  to   { background-position: 0 0; }
 }
 
 .subtitle {
-  color: var(--dark-gray);
+  color: var(--white);
   font-size: 16px;
+  opacity: 0.9;
   position: relative;
   display: inline-block;
-  animation: fadeIn 1.2s;
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(10px);}
-  100% { opacity: 1; transform: translateY(0);}
 }
 
 .content-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 22px;
+  gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  animation: slideIn 1s var(--spring);
-}
-
-@keyframes slideIn {
-  from { opacity: 0; transform: translateY(50px);}
-  to { opacity: 1; transform: translateY(0);}
 }
 
 .video-container {
   flex: 1;
-  min-width: 320px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  animation: floatUp 1.1s var(--spring);
-}
-
-@keyframes floatUp {
-  from { opacity: 0; transform: translateY(40px) scale(.98);}
-  to { opacity: 1; transform: translateY(0) scale(1);}
+  min-width: 300px;
 }
 
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
   height: 0;
   overflow: hidden;
-  border-radius: 16px;
-  box-shadow: var(--shadow);
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   background: #000;
-  will-change: box-shadow, transform;
-  transition: var(--transition);
-  animation: popIn 0.8s var(--spring);
-}
-
-@keyframes popIn {
-  from { opacity: 0; transform: scale(.97);}
-  to { opacity: 1; transform: scale(1);}
-}
-
-.video-wrapper:hover {
-  box-shadow: 0 8px 32px rgba(44,94,146,0.21), 0 2px 10px rgba(44,94,146,0.08);
-  transform: scale(1.012);
 }
 
 .video-wrapper iframe {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border: none;
-  transition: filter .3s;
 }
 
 .video-info {
-  margin-top: 18px;
-  background: var(--white);
-  padding: 18px;
-  border-radius: 12px;
-  border: 1px solid var(--medium-gray);
-  box-shadow: var(--shadow);
-  animation: fadeIn 1.2s 0.2s both;
+  margin-top: 15px;
+  background: var(--glass);
+  padding: 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
 }
 
 .video-title {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 14px;
-  letter-spacing: .3px;
-  transition: color .3s;
-  animation: fadeInUp 0.8s var(--spring);
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(15px);}
-  to   { opacity: 1; transform: translateY(0);}
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--accent-light);
+  margin-bottom: 10px;
 }
 
 .video-description {
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   gap: 10px;
   margin-top: 10px;
-  animation: fadeIn 1.2s 0.3s both;
 }
 
 .video-description a {
-  color: var(--white);
+  color: var(--accent-light);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  transition: var(--transition);
-  padding: 8px 14px;
-  border-radius: 6px;
-  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
-  box-shadow: 0 2px 8px rgba(44,94,146,0.07);
-  font-size: 13px;
-  font-weight: 600;
-  position: relative;
-  overflow: hidden;
-  will-change: background, transform;
-  border: none;
-}
-
-.video-description a:before {
-  content: "";
-  position: absolute;
-  left: -80%;
-  top: 0;
-  width: 70%;
-  height: 100%;
-  background: linear-gradient(90deg,rgba(255,255,255,0.09) 0%,rgba(255,255,255,0.25) 100%);
-  pointer-events: none;
-  transition: left 0.25s var(--spring);
-  z-index: 0;
-}
-
-.video-description a:hover:before {
-  left: 120%;
+  transition: all 0.3s ease;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: rgba(255, 126, 0, 0.1);
+  border: 1px solid rgba(255, 126, 0, 0.3);
 }
 
 .video-description a:hover {
-  background: linear-gradient(90deg, var(--primary-dark), var(--primary));
-  transform: translateY(-2px) scale(1.04) rotate(-1deg);
-  box-shadow: 0 4px 16px rgba(44,94,146,0.11);
-}
-
-.video-description a i {
-  font-size: 14px;
-  transition: transform .3s;
-}
-
-.video-description a:hover i {
-  transform: rotate(-15deg) scale(1.14);
+  background: rgba(255, 126, 0, 0.3);
+  transform: translateY(-2px);
 }
 
 .playlist-container {
-  flex: 0 0 370px;
-  background: var(--white);
-  border-radius: 14px;
+  flex: 0 0 350px;
+  background: var(--glass);
+  border-radius: 15px;
   padding: 20px;
-  border: 1px solid var(--medium-gray);
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--glass-border);
   max-height: 80vh;
   overflow-y: auto;
-  box-shadow: var(--shadow);
-  position: relative;
-  animation: fadeInRight 1.2s var(--spring);
-  transition: box-shadow .35s cubic-bezier(.4,1,.22,1);
-}
-
-@keyframes fadeInRight {
-  from { opacity: 0; transform: translateX(60px);}
-  to   { opacity: 1; transform: translateX(0);}
-}
-
-.playlist-container:before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0; right: 0; height: 3.5px;
-  background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary-dark));
-  border-radius: 14px 14px 0 0;
-  opacity: .22;
-  animation: gradientBar 4s infinite linear;
-}
-
-@keyframes gradientBar {
-  0% { background-position: 0 0;}
-  100% { background-position: 200% 0;}
 }
 
 .playlist-container::-webkit-scrollbar {
-  width: 7px;
-  background: rgba(0,0,0,0.03);
-  border-radius: 10px;
-  transition: background .35s;
+  width: 8px;
 }
+
+.playlist-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
 .playlist-container::-webkit-scrollbar-thumb {
-  background: var(--primary);
+  background: var(--accent);
   border-radius: 10px;
-  transition: background .35s;
 }
+
 .playlist-container::-webkit-scrollbar-thumb:hover {
-  background: var(--primary-dark);
+  background: var(--accent-light);
 }
 
 .dropdown {
-  margin-bottom: 17px;
-  animation: fadeInUp 1.2s 0.1s both;
+  margin-bottom: 20px;
 }
 
 .dropdown-btn {
   width: 100%;
-  padding: 13px 18px;
-  background: var(--white);
-  border: 1.5px solid var(--medium-gray);
-  color: var(--primary);
+  padding: 12px 15px;
+  background: rgba(75, 156, 211, 0.2);
+  border: 1px solid rgba(75, 156, 211, 0.4);
+  color: var(--accent-light);
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 600;
   border-radius: 8px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: var(--transition);
-  text-align: left;
-  position: relative;
-  will-change: background, box-shadow, transform;
-  box-shadow: 0 2px 6px rgba(44,94,146,0.05);
-  z-index: 1;
+  transition: all 0.3s ease;
 }
 
-.dropdown-btn:hover, .dropdown-btn.active {
-  background: var(--primary);
-  color: var(--white);
-  box-shadow: 0 4px 16px rgba(44,94,146,0.13);
-  transform: scale(1.02) translateY(-3px);
+.dropdown-btn:hover {
+  background: rgba(75, 156, 211, 0.4);
 }
 
 .dropdown-btn i {
-  transition: transform 0.3s var(--spring);
-  font-size: 16px;
-  margin-left: 10px;
+  transition: transform 0.3s ease;
 }
 
 .dropdown-btn.active i {
@@ -359,174 +225,157 @@ h1 {
 .dropdown-content {
   display: none;
   padding: 10px 0;
-  animation: fadeIn 0.5s var(--spring);
+  animation: fadeIn 0.3s ease;
 }
 
 .dropdown-content.show {
   display: block;
-  animation: dropdownShow .55s var(--spring);
-}
-
-@keyframes dropdownShow {
-  from { opacity: 0; max-height: 0; transform: translateY(-10px);}
-  to   { opacity: 1; max-height: 900px; transform: translateY(0);}
 }
 
 .chapter-dropdown {
-  margin-top: 12px;
-  margin-left: 12px;
-  transition: margin .3s;
+  margin-top: 10px;
+  margin-left: 15px;
 }
 
 .chapter-btn {
   width: 100%;
-  padding: 11px 18px;
-  background: var(--light-gray);
-  border: 1.5px solid var(--medium-gray);
-  color: var(--text-dark);
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 7px;
+  padding: 10px 15px;
+  background: rgba(255, 126, 0, 0.1);
+  border: 1px solid rgba(255, 126, 0, 0.3);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 6px;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: var(--transition);
-  margin-bottom: 9px;
-  will-change: background, box-shadow, transform;
-  box-shadow: 0 1px 3px rgba(44,94,146,0.03);
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
 }
 
-.chapter-btn:hover, .chapter-btn.active {
-  background: var(--primary);
-  color: var(--white);
-  border-color: var(--primary);
-  transform: scale(1.03);
-  box-shadow: 0 4px 14px rgba(44,94,146,0.11);
-}
-
-.chapter-btn i {
-  transition: transform 0.3s var(--spring);
-  font-size: 14px;
-}
-
-.chapter-btn.active i {
-  transform: rotate(-90deg);
+.chapter-btn:hover {
+  background: rgba(255, 126, 0, 0.3);
 }
 
 .chapter-content {
   display: none;
-  padding: 7px 0 7px 14px;
-  animation: fadeIn 0.5s var(--spring);
+  padding: 5px 0 5px 15px;
+  animation: fadeIn 0.3s ease;
 }
 
 .chapter-content.show {
   display: block;
-  animation: dropdownShow .5s var(--spring);
 }
 
 .video-item {
-  padding: 9px 14px;
+  padding: 8px 12px;
   margin: 5px 0;
-  border-radius: 7px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: var(--transition);
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
-  gap: 12px;
-  background: var(--white);
-  border-left: 4px solid transparent;
-  border: 1.5px solid var(--medium-gray);
-  will-change: background, border, box-shadow, transform;
-  box-shadow: 0 1px 4px rgba(44,94,146,0.03);
-  animation: fadeInUp 0.65s var(--spring);
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid transparent;
 }
 
 .video-item:hover {
-  background: var(--light-gray);
-  border-left: 4px solid var(--primary);
-  transform: translateX(4px) scale(1.01);
-  box-shadow: 0 3px 12px rgba(44,94,146,0.13);
+  background: rgba(255, 255, 255, 0.1);
+  border-left: 3px solid var(--accent);
 }
 
 .video-item.active {
-  background: rgba(44, 94, 146, 0.12);
-  border-left: 4px solid var(--accent);
-  box-shadow: 0 5px 24px rgba(44,94,146,0.14);
-  transform: scale(1.035) translateY(-2px);
+  background: rgba(75, 156, 211, 0.2);
+  border-left: 3px solid var(--primary);
 }
 
 .video-item i {
-  color: var(--primary);
-  font-size: 15px;
-  transition: transform .3s;
-}
-
-.video-item.active i,
-.video-item:hover i {
   color: var(--accent);
-  transform: scale(1.2) rotate(-15deg);
+  font-size: 12px;
 }
 
 .video-item-title {
   flex: 1;
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: .1px;
-  transition: color .2s;
+  font-size: 14px;
 }
 
-@media (max-width: 900px) {
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
   .content-container {
     flex-direction: column;
-    gap: 20px;
   }
+  
   .playlist-container {
     flex: 1;
     width: 100%;
-    max-height: 420px;
+    max-height: 400px;
   }
+  
   .video-container {
     width: 100%;
   }
+  
   h1 {
-    font-size: 23px;
+    font-size: 20px;
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 480px) {
   body {
-    padding: 9px;
+    padding: 15px;
   }
+  
   .header {
-    margin-bottom: 13px;
+    margin-bottom: 20px;
   }
+  
   .back-btn {
-    width: 34px;
-    height: 34px;
+    width: 35px;
+    height: 35px;
     font-size: 14px;
   }
+  
   .video-title {
-    font-size: 14.5px;
+    font-size: 16px;
   }
+  
   .playlist-container {
-    padding: 10px;
+    padding: 15px;
   }
+  
   .dropdown-btn {
-    padding: 9px 10px;
-    font-size: 13px;
+    padding: 10px 12px;
+    font-size: 14px;
   }
+  
   .video-item-title {
-    font-size: 12.5px;
+    font-size: 13px;
   }
 }
   </style>
 </head>
 <body>
   <div class="header">
-    <div class="back-btn" onclick="window.history.back()">
-      <i class="fas fa-arrow-left"></i>
-    </div>
+<div class="back-btn" onclick="window.history.back()">
+  <i class="fas fa-arrow-left"></i>
+</div>
     <h1>বাংলা প্রথম পত্র</h1>
     <p class="subtitle">সাকিব হাসান</p>
   </div>
@@ -537,12 +386,15 @@ h1 {
         <iframe id="videoFrame" src="https://www.youtube.com/embed/IV6k5HrWQ8w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="video-info">
-        <div class="video-title" id="videoTitle">পছন্দমতো ক্লাসটি বাছাই কর</div>
-        <div class="video-description" id="videoLinks"></div>
+        <div class="video-title" id="videoTitle">Select a Class to Begin</div>
+        <div class="video-description">
+          <a href="https://drive.google.com/drive/folders/1n3s7hHOpV_6djYovYtv-Tia7bjDAxe1m?fbclid=IwY2xjawKSgehleHRuA2FlbQIxMABicmlkETFmcEVNeTVHN255ejN2Y2hpAR61jkhiis6kQQOzksV86YnFo-NGtoB-69sXhHrB9TtpkZxKDDTl1Xeb7gpwCw_aem_M1HWOlBCRqJCsQTYPherbQ" target="_blank">
+            <i class="fas fa-file-pdf"></i> লেকচার শিট
+          </a>
+        </div>
       </div>
     </div>
-
-    <div class="playlist-container">
+ <div class="playlist-container">
 
       <!-- গদ্য Section -->
       <div class="dropdown">
@@ -795,9 +647,7 @@ h1 {
       </div>
 
     </div>
-  </div>
-
-  <script>
+  </div>  <script>
     function toggleDropdown(button) {
       button.classList.toggle('active');
       const content = button.nextElementSibling;
@@ -810,24 +660,13 @@ h1 {
       content.classList.toggle('show');
     }
     
-    function changeVideo(title, videoId, lectureSheet, practiceSheet) {
+    function changeVideo(title, videoId) {
       // Update video
       const iframe = document.getElementById('videoFrame');
       iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
       
       // Update title
       document.getElementById('videoTitle').textContent = title;
-      
-      // Update links
-      const linksContainer = document.getElementById('videoLinks');
-      linksContainer.innerHTML = `
-        <a href="${lectureSheet}" target="_blank">
-          <i class="fas fa-file-alt"></i> লেকচার শিট
-        </a>
-        <a href="${practiceSheet}" target="_blank">
-          <i class="fas fa-edit"></i> অনুশীলন শিট
-        </a>
-      `;
       
       // Update active state in playlist
       const allItems = document.querySelectorAll('.video-item');
@@ -841,17 +680,6 @@ h1 {
       });
     }
     
-    // Initialize with the first video's links
-    document.addEventListener('DOMContentLoaded', function() {
-      const linksContainer = document.getElementById('videoLinks');
-      linksContainer.innerHTML = `
-        <a href="https://drive.google.com/drive/folders/1n3s7hHOpV_6djYovYtv-Tia7bjDAxe1m" target="_blank">
-          <i class="fas fa-file-alt"></i> লেকচার শিট
-        </a>
-        <a href="https://drive.google.com/drive/folders/1n3s7hHOpV_6djYovYtv-Tia7bjDAxe1m" target="_blank">
-          <i class="fas fa-edit"></i> অনুশীলন শিট
-      `;
-    });
   </script>
 </body>
 </html>
