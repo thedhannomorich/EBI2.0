@@ -6,6 +6,7 @@
   <title>বাংলা দ্বিতীয় পত্র | Fahad's Tutorial</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
+/* ... (CSS unchanged, omitted for brevity; copy from your code) ... */
 :root {
   --primary: #4b9cd3;
   --primary-dark: #1a3a8f;
@@ -16,14 +17,7 @@
   --glass-border: rgba(255, 255, 255, 0.2);
   --glass-highlight: rgba(255, 255, 255, 0.15);
 }
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Hind Siliguri', 'Poppins', sans-serif;
-}
-
+* {margin: 0;padding: 0;box-sizing: border-box;font-family: 'Hind Siliguri', 'Poppins', sans-serif;}
 body {
   background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
   background-size: 400% 400%;
@@ -34,19 +28,16 @@ body {
   font-size: 14px;
   line-height: 1.6;
 }
-
 @keyframes gradientBG {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
 .header {
   text-align: center;
   margin-bottom: 30px;
   animation: fadeInDown 0.8s ease-out;
 }
-
 .back-btn {
   position: absolute;
   left: 20px;
@@ -64,12 +55,10 @@ body {
   transition: all 0.3s ease;
   backdrop-filter: blur(5px);
 }
-
 .back-btn:hover {
   background: var(--accent);
   transform: translateX(-5px);
 }
-
 h1 {
   font-size: 24px;
   color: var(--accent-light);
@@ -78,7 +67,6 @@ h1 {
   text-shadow: 0 2px 10px rgba(249, 212, 35, 0.4);
   letter-spacing: 1px;
 }
-
 .subtitle {
   color: var(--white);
   font-size: 16px;
@@ -86,7 +74,6 @@ h1 {
   position: relative;
   display: inline-block;
 }
-
 .content-container {
   display: flex;
   flex-wrap: wrap;
@@ -94,12 +81,10 @@ h1 {
   max-width: 1200px;
   margin: 0 auto;
 }
-
 .video-container {
   flex: 1;
   min-width: 300px;
 }
-
 .video-wrapper {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -108,9 +93,18 @@ h1 {
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   background: #000;
+  transition: box-shadow 0.6s cubic-bezier(.68,-0.55,.27,1.55);
 }
-
-.video-wrapper iframe {
+.video-wrapper.video-transition {
+  box-shadow: 0 0 40px 10px var(--accent-light), 0 0 80px 20px var(--accent);
+  animation: videoFadeIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes videoFadeIn {
+  0% { opacity: 0; filter: blur(10px);}
+  80% { opacity: 0.8; filter: blur(2px);}
+  100% { opacity: 1; filter: blur(0);}
+}
+.video-wrapper iframe, .video-wrapper #playerYTFrame {
   position: absolute;
   top: 0;
   left: 0;
@@ -118,7 +112,6 @@ h1 {
   height: 100%;
   border: none;
 }
-
 .video-info {
   margin-top: 15px;
   background: var(--glass);
@@ -127,21 +120,28 @@ h1 {
   backdrop-filter: blur(5px);
   border: 1px solid var(--glass-border);
 }
-
 .video-title {
   font-size: 18px;
   font-weight: 600;
   color: var(--accent-light);
   margin-bottom: 10px;
+  transition: color 0.6s cubic-bezier(.68,-0.55,.27,1.55);
 }
-
+.video-title.video-transition {
+  color: var(--accent);
+  animation: titleFadeIn 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+}
+@keyframes titleFadeIn {
+  0% { opacity: 0; filter: blur(20px);}
+  80% { opacity: 0.8; filter: blur(2px);}
+  100% { opacity: 1; filter: blur(0);}
+}
 .video-description {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-top: 10px;
 }
-
 .video-description a {
   color: var(--accent-light);
   text-decoration: none;
@@ -154,12 +154,10 @@ h1 {
   background: rgba(255, 126, 0, 0.1);
   border: 1px solid rgba(255, 126, 0, 0.3);
 }
-
 .video-description a:hover {
   background: rgba(255, 126, 0, 0.3);
   transform: translateY(-2px);
 }
-
 .playlist-container {
   flex: 0 0 350px;
   background: var(--glass);
@@ -170,29 +168,19 @@ h1 {
   max-height: 80vh;
   overflow-y: auto;
 }
-
-.playlist-container::-webkit-scrollbar {
-  width: 8px;
-}
-
+.playlist-container::-webkit-scrollbar {width: 8px;}
 .playlist-container::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
 }
-
 .playlist-container::-webkit-scrollbar-thumb {
   background: var(--accent);
   border-radius: 10px;
 }
-
 .playlist-container::-webkit-scrollbar-thumb:hover {
   background: var(--accent-light);
 }
-
-.dropdown {
-  margin-bottom: 20px;
-}
-
+.dropdown {margin-bottom: 20px;}
 .dropdown-btn {
   width: 100%;
   padding: 12px 15px;
@@ -208,34 +196,16 @@ h1 {
   align-items: center;
   transition: all 0.3s ease;
 }
-
-.dropdown-btn:hover {
-  background: rgba(75, 156, 211, 0.4);
-}
-
-.dropdown-btn i {
-  transition: transform 0.3s ease;
-}
-
-.dropdown-btn.active i {
-  transform: rotate(180deg);
-}
-
+.dropdown-btn:hover {background: rgba(75, 156, 211, 0.4);}
+.dropdown-btn i {transition: transform 0.3s ease;}
+.dropdown-btn.active i {transform: rotate(180deg);}
 .dropdown-content {
   display: none;
   padding: 10px 0;
   animation: fadeIn 0.3s ease;
 }
-
-.dropdown-content.show {
-  display: block;
-}
-
-.chapter-dropdown {
-  margin-top: 10px;
-  margin-left: 15px;
-}
-
+.dropdown-content.show {display: block;}
+.chapter-dropdown {margin-top: 10px; margin-left: 15px;}
 .chapter-btn {
   width: 100%;
   padding: 10px 15px;
@@ -252,21 +222,13 @@ h1 {
   transition: all 0.3s ease;
   margin-bottom: 8px;
 }
-
-.chapter-btn:hover {
-  background: rgba(255, 126, 0, 0.3);
-}
-
+.chapter-btn:hover {background: rgba(255, 126, 0, 0.3);}
 .chapter-content {
   display: none;
   padding: 5px 0 5px 15px;
   animation: fadeIn 0.3s ease;
 }
-
-.chapter-content.show {
-  display: block;
-}
-
+.chapter-content.show {display: block;}
 .video-item {
   padding: 8px 12px;
   margin: 5px 0;
@@ -279,32 +241,20 @@ h1 {
   background: rgba(255, 255, 255, 0.05);
   border-left: 3px solid transparent;
 }
-
 .video-item:hover {
   background: rgba(255, 255, 255, 0.1);
   border-left: 3px solid var(--accent);
 }
-
 .video-item.active {
   background: rgba(75, 156, 211, 0.2);
   border-left: 3px solid var(--primary);
 }
-
-.video-item i {
-  color: var(--accent);
-  font-size: 12px;
-}
-
-.video-item-title {
-  flex: 1;
-  font-size: 14px;
-}
-
+.video-item i {color: var(--accent); font-size: 12px;}
+.video-item-title {flex: 1;font-size: 14px;}
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-
 @keyframes fadeInDown {
   from {
     opacity: 0;
@@ -315,73 +265,35 @@ h1 {
     transform: translateY(0);
   }
 }
-
 @media (max-width: 768px) {
-  .content-container {
-    flex-direction: column;
-  }
-  
-  .playlist-container {
-    flex: 1;
-    width: 100%;
-    max-height: 400px;
-  }
-  
-  .video-container {
-    width: 100%;
-  }
-  
-  h1 {
-    font-size: 20px;
-  }
+  .content-container {flex-direction: column;}
+  .playlist-container {flex: 1;width: 100%;max-height: 400px;}
+  .video-container {width: 100%;}
+  h1 {font-size: 20px;}
 }
-
 @media (max-width: 480px) {
-  body {
-    padding: 15px;
-  }
-  
-  .header {
-    margin-bottom: 20px;
-  }
-  
-  .back-btn {
-    width: 35px;
-    height: 35px;
-    font-size: 14px;
-  }
-  
-  .video-title {
-    font-size: 16px;
-  }
-  
-  .playlist-container {
-    padding: 15px;
-  }
-  
-  .dropdown-btn {
-    padding: 10px 12px;
-    font-size: 14px;
-  }
-  
-  .video-item-title {
-    font-size: 13px;
-  }
+  body {padding: 15px;}
+  .header {margin-bottom: 20px;}
+  .back-btn {width: 35px;height: 35px;font-size: 14px;}
+  .video-title {font-size: 16px;}
+  .playlist-container {padding: 15px;}
+  .dropdown-btn {padding: 10px 12px;font-size: 14px;}
+  .video-item-title {font-size: 13px;}
 }
   </style>
 </head>
 <body>
   <div class="header">
-<div class="back-btn" onclick="window.history.back()">
-  <i class="fas fa-arrow-left"></i>
-</div>
+    <div class="back-btn" onclick="window.history.back()">
+      <i class="fas fa-arrow-left"></i>
+    </div>
     <h1>বাংলা দ্বিতীয় পত্র</h1>
     <p class="subtitle">সাকিব হাসান</p>
   </div>
 
   <div class="content-container">
     <div class="video-container">
-      <div class="video-wrapper">
+      <div class="video-wrapper" id="videoWrapper">
         <iframe id="videoFrame" src="https://www.youtube.com/embed/IV6k5HrWQ8w" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
       <div class="video-info">
@@ -397,240 +309,307 @@ h1 {
 <div class="playlist-container">
   <div class="dropdown">
     <button class="dropdown-btn" onclick="toggleDropdown(this)">
-      উচ্চারণ
+      বাংলা উচ্চারণের নিয়ম
       <i class="fas fa-chevron-down"></i>
     </button>
     <div class="dropdown-content">
       <div class="video-item" onclick="changeVideo('ক্লাস ০১ | উচ্চারণ | জিরো ব্যাসিক | সাকিব স্যার', 'c4C-nRhx4gk')">
         <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ০১</span>
+        <span class="video-item-title">ক্লাস ১</span>
       </div>
       <div class="video-item" onclick="changeVideo('ক্লাস ০২ | উচ্চারণ মূল ক্লাস | সাকিব স্যার', '3Tdw-ZHKtGo')">
         <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ০২</span>
+        <span class="video-item-title">ক্লাস ২</span>
       </div>
       <div class="video-item" onclick="changeVideo('ক্লাস ০৩ | উচ্চারণ মূল ক্লাস | সাকিব স্যার | ২য় অংশ', 'RAcxtBTOWlo')">
         <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ০৩</span>
+        <span class="video-item-title">ক্লাস ৩</span>
       </div>
       <div class="video-item" onclick="changeVideo('ক্লাস ০৪ | উচ্চারণে উনিশ বিশ | সাকিব স্যার', 'hPkwUNL27AM')">
         <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ০৪</span>
+        <span class="video-item-title">ক্লাস ৪</span>
       </div>
       <div class="video-item" onclick="changeVideo('ক্লাস ০৫ | উচ্চারণে উনিশ বিশ | সাকিব স্যার | ২য় অংশ', 'UThPyxr5S4g')">
         <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ০৫</span>
+        <span class="video-item-title">ক্লাস ৫</span>
       </div>
       <div class="video-item" onclick="changeVideo('ক্লাস ০৬ | বোর্ড ও ইউনিভার্সিটি প্রশ্ন সমাধান | সাকিব স্যার', 'hw3qjA6BA08')">
         <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ০৬</span>
+        <span class="video-item-title">ক্লাস ৬</span>
       </div>
     </div>
   </div>
 
   <div class="dropdown">
     <button class="dropdown-btn" onclick="toggleDropdown(this)">
-      বানান
+      বাংলা বানানের নিয়ম
       <i class="fas fa-chevron-down"></i>
     </button>
     <div class="dropdown-content">
       <div class="video-item" onclick="changeVideo('ক্লাস ০১ | বানান | সাকিব স্যার', 't2H56oSIApk')">
         <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ০১</span>
+        <span class="video-item-title">ক্লাস ১</span>
       </div>
       <div class="video-item" onclick="changeVideo('ক্লাস ০২ | বানান | সাকিব স্যার', 'ANWWS_OiDPo')">
         <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ০২</span>
+        <span class="video-item-title">ক্লাস ২</span>
       </div>
       <div class="video-item" onclick="changeVideo('ক্লাস ০৩ | বানান | সাকিব স্যার', 'iZhbF4ByeuY')">
         <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ০৩</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="dropdown">
-    <button class="dropdown-btn" onclick="toggleDropdown(this)">
-      উপসর্গ
-      <i class="fas fa-chevron-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <div class="video-item" onclick="changeVideo('ক্লাস ০১ | উপসর্গের উপকথা | সাকিব স্যার', 'lb_1JgODyro')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ০১</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ০২ | উপসর্গ | প্রশ্ন সমাধান ক্লাস | সাকিব স্যার', '3fyEBh4_eO4')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ০২</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="dropdown">
-    <button class="dropdown-btn" onclick="toggleDropdown(this)">
-      সমাস
-      <i class="fas fa-chevron-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <div class="video-item" onclick="changeVideo('ক্লাস ১ | সমাস | জিরো বেসিক | নবম দশম শ্রেণীর বই ব্যাখ্যা | সাকিব স্যার', 'FWB8w7mr_fc')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ১</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ২ | সমাস | জিরো বেসিক থেকে প্রকারভেদ | নবম দশম শ্রেণির বইয়ের ব্যাখ্যা | সাকিব স্যার', 'D8v4ny9qvvU')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ২</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ৩ | সমাস | জিরো বেসিক থেকে প্রকারভেদ | নবম দশম শ্রেণির বইয়ের ব্যাখ্যা | সাকিব স্যার', 'tzOQlQ8zUs4')">
-        <i class="fas fa-play"></i>
         <span class="video-item-title">ক্লাস ৩</span>
       </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ৪ | সমাস | Advance | দ্বন্দ্ব,দ্বিগু,তৎপুরুষ ও ২য়া পর্যন্ত | সাকিব স্যার', 'GF5lj57UZRY')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৪</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ৫ | সমাস | Advance | তৎপুরুষ,কর্মধারয় সম্পূর্ণ ও অব্যয়ীভাবভাব | সাকিব স্যার', '5MfQZv_naGs')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৫</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ৫ | Advance | বহুব্রীহি,প্রাদি,নিত্য ও সুপসুপা সমাস | বোর্ড প্রশ্ন সমাধান | সাকিব স্যার (১)', 'QEQIrL56ZKU')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৫ (অংশ ১)</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ৫ | Advance | বহুব্রীহি,প্রাদি,নিত্য ও সুপসুপা সমাস | বোর্ড প্রশ্ন সমাধান | সাকিব স্যার (২)', 'jlb4Q1vY31E')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৫ (অংশ ২)</span>
-      </div>
     </div>
   </div>
-
-  <div class="dropdown">
-    <button class="dropdown-btn" onclick="toggleDropdown(this)">
-      প্রত্যয়
-      <i class="fas fa-chevron-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <div class="video-item" onclick="changeVideo('ক্লাস ১ | প্রত্যয় | সাকিব স্যার', 'ogUE0UfsWck')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ১</span>
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown(this)">
+          বাংলা ভাষার ব্যাকরণিক শব্দশ্রেণি
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="video-item" onclick="changeVideo('ক্লাস ১ | বাংলা ভাষার ব্যাকরণিক শব্দশ্রেণি | বেসিক ক্লাস | সাকিব স্যার', 'w7MybPsYLSs')">
+            <i class="fas fa-play"></i>
+            <span class="video-item-title">ক্লাস ১</span>
+          </div>
+          <div class="video-item" onclick="changeVideo('ক্লাস ২ | বাংলা ভাষার ব্যাকরণিক শব্দশ্রেণি | বিশেষ্য ও সর্বনাম | সাকিব স্যার', 'efgjfzzOm1Q')">
+            <i class="fas fa-play"></i>
+            <span class="video-item-title">ক্লাস ২</span>
+          </div>
+          <div class="video-item" onclick="changeVideo('ক্লাস ৩ | বাংলা ভাষার ব্যাকরণিক শব্দশ্রেণি | বিশেষণ ও ক্রিয়া | সাকিব স্যার', 'FGuaihEDo9k')">
+            <i class="fas fa-play"></i>
+            <span class="video-item-title">ক্লাস ৩</span>
+          </div>
+          <div class="video-item" onclick="changeVideo('ক্লাস ৪ | বাংলা ভাষার ব্যাকরণিক শব্দশ্রেণি | ক্রিয়া পদ | সাকিব স্যার', 'VIM7QdHklNo')">
+            <i class="fas fa-play"></i>
+            <span class="video-item-title">ক্লাস ৪</span>
+          </div>
+          <div class="video-item" onclick="changeVideo('ক্লাস ৫ | বাংলা ভাষার ব্যাকরণিক শব্দশ্রেণি | ক্রিয়া বিশেষণ | সাকিব স্যার', 'kv4Qh-PcsNY')">
+            <i class="fas fa-play"></i>
+            <span class="video-item-title">ক্লাস ৫</span>
+          </div>
+          <div class="video-item" onclick="changeVideo('ক্লাস ৬ | বাংলা ভাষার ব্যাকরণিক শব্দশ্রেণি | বোর্ড প্রশ্ন সমাধান | সাকিব স্যার', 'F1H87X1oDus')">
+            <i class="fas fa-play"></i>
+            <span class="video-item-title">ক্লাস ৬</span>
+          </div>
+        </div>
       </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ২ | প্রত্যয় | সাকিব স্যার', 'jVIE4Zi1e3g')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ২</span>
+      <div class="dropdown">
+        <button class="dropdown-btn" onclick="toggleDropdown(this)">
+          শব্দগঠন - সমাস
+          <i class="fas fa-chevron-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <div class="video-item" onclick="changeVideo('ক্লাস ১ | সমাস | জিরো বেসিক | নবম দশম শ্রেণীর বই ব্যাখ্যা | সাকিব স্যার', 'FWB8w7mr_fc')">
+            <i class="fas fa-play"></i>
+            <span class="video-item-title">ক্লাস ১</span>
+          </div>
+          <div class="video-item" onclick="changeVideo('ক্লাস ২ | সমাস | জিরো বেসিক থেকে প্রকারভেদ | নবম দশম শ্রেণির বইয়ের ব্যাখ্যা | সাকিব স্যার', 'D8v4ny9qvvU')">
+            <i class="fas fa-play"></i>
+            <span class="video-item-title">ক্লাস ২</span>
+          </div>
+          <div class="video-item" onclick="changeVideo('ক্লাস ৩ | সমাস | জিরো বেসিক থেকে প্রকারভেদ | নবম দশম শ্রেণির বইয়ের ব্যাখ্যা | সাকিব স্যার', 'tzOQlQ8zUs4')">
+            <i class="fas fa-play"></i>
+            <span class="video-item-title">ক্লাস ৩</span>
+          </div>
+          <div class="video-item" onclick="changeVideo('ক্লাস ৪ | সমাস | Advance | দ্বন্দ্ব,দ্বিগু,তৎপুরুষ ও ২য়া পর্যন্ত | সাকিব স্যার', 'GF5lj57UZRY')">
+            <i class="fas fa-play"></i>
+            <span class="video-item-title">ক্লাস ৪</span>
+          </div>
+          <div class="video-item" onclick="changeVideo('ক্লাস ৫ | সমাস | Advance | তৎপুরুষ,কর্মধারয় সম্পূর্ণ ও অব্যয়ীভাবভাব | সাকিব স্যার', '5MfQZv_naGs')">
+            <i class="fas fa-play"></i>
+            <span class="video-item-title">ক্লাস ৫</span>
+          </div>
+          <div class="video-item" onclick="changeVideo('ক্লাস ৬ | Advance | বহুব্রীহি,প্রাদি,নিত্য ও সুপসুপা সমাস | বোর্ড প্রশ্ন সমাধান | সাকিব স্যার (১)', 'QEQIrL56ZKU')">
+            <i class="fas fa-play"></i>
+            <span class="video-item-title">ক্লাস ৬</span>
+          </div>
+        </div>
       </div>
+<div class="dropdown">
+  <button class="dropdown-btn" onclick="toggleDropdown(this)">
+    বাক্যতত্ত্ব
+    <i class="fas fa-chevron-down"></i>
+  </button>
+  <div class="dropdown-content">
+    <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ১ | কর্তা,কর্ম,ক্রিয়া,উদ্দেশ্য,বিধেয়,গুণ,যোগ্যতা হারানোর কারণ,বাক্যের প্রকার ভেদ', 'ZfrArXp6Bqk')">
+      <i class="fas fa-play"></i>
+      <span class="video-item-title">ক্লাস ১</span>
     </div>
-  </div>
-
-  <div class="dropdown">
-    <button class="dropdown-btn" onclick="toggleDropdown(this)">
-      ব্যাকরণিক শব্দশ্রেণি
-      <i class="fas fa-chevron-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <div class="video-item" onclick="changeVideo('ক্লাস ১ | ব্যাকরণিক শব্দশ্রেণি | বেসিক ক্লাস | সাকিব স্যার', 'w7MybPsYLSs')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ১</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ২ | ব্যাকরণিক শব্দশ্রেণি | বিশেষ্য ও সর্বনাম | সাকিব স্যার', 'efgjfzzOm1Q')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ২</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ৩ | ব্যাকরণিক শব্দশ্রেণি | বিশেষণ ও ক্রিয়া | সাকিব স্যার', 'FGuaihEDo9k')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৩</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ৪ | ব্যাকরণিক শব্দশ্রেণি | ক্রিয়া পদ | সাকিব স্যার', 'VIM7QdHklNo')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৪ (অংশ ১)</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ৪ | ব্যাকরণিক শব্দশ্রেণি | ক্রিয়াপদ রিস্টার্ট | সাকিব স্যার', 'l597xsADn1U')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৪ (অংশ ২)</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ৫ | ব্যাকরণিক শব্দশ্রেণি | ক্রিয়া বিশেষণ | সাকিব স্যার', 'kv4Qh-PcsNY')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৫</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ৬ | ব্যাকরণিক শব্দশ্রেণি | বোর্ড প্রশ্ন সমাধান | সাকিব স্যার', 'F1H87X1oDus')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৬ (অংশ ১)</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('ক্লাস ৬ | ব্যাকরণিক শব্দশ্রেণি | বোর্ড প্রশ্ন সমাধান (২) | সাকিব স্যার', 'PYdpRDqjvRg')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৬ (অংশ ২)</span>
-      </div>
+    <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ২ | উদ্দেশ্য এবং বিধেয় প্রসারক | সাকিব স্যার', 'p71DiBy-ggk')">
+      <i class="fas fa-play"></i>
+      <span class="video-item-title">ক্লাস ২</span>
     </div>
-  </div>
-
-  <div class="dropdown">
-    <button class="dropdown-btn" onclick="toggleDropdown(this)">
-      বাক্য
-      <i class="fas fa-chevron-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ১ | কর্তা,কর্ম,ক্রিয়া,উদ্দেশ্য,বিধেয়,গুণ,যোগ্যতা হারানোর কারণ,বাক্যের প্রকার ভেদ', 'ZfrArXp6Bqk')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ১</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('বাক্য ক্লাস २ | উদ্দেশ্য এবং বিধেয় প্রসারক | সাকিব স্যার', 'p71DiBy-ggk')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ২</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ৩ | বাক্যের শ্রেণিবিভাগ ( গঠন,অর্থানুসারে/লক্ষ্য, ক্রিয়ার উপস্থিতি, খণ্ডবাক্য,পদক্রম।)', 'lrh8LPsEXbg')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৩</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ৪ | বাক্য রুপান্তর নিয়মের বেসিক  | সাকিব স্যার', 'AQrBCZy8pus')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৪</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ৫ | বাক্য রুপান্তর নিয়মের বেসিক (২)  | সাকিব স্যার', '1cdONU_NOYw')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৫</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ৬ | বাক্য রূপান্তর বোর্ড প্রশ্ন সমাধান | সাকিব স্যার', 'N6JU3abj6O8')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৬</span>
-      </div>
-      <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ৭ | বাক্যশুদ্ধি | সাকিব স্যার', 'TDIHhhE6ZPY')">
-        <i class="fas fa-play"></i>
-        <span class="video-item-title">ক্লাস ৭</span>
-      </div>
+    <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ৩ | বাক্যের শ্রেণিবিভাগ ( গঠন,অর্থানুসারে/লক্ষ্য, ক্রিয়ার উপস্থিতি, খণ্ডবাক্য,পদক্রম।)', 'lrh8LPsEXbg')">
+      <i class="fas fa-play"></i>
+      <span class="video-item-title">ক্লাস ৩</span>
+    </div>
+    <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ৪ | বাক্য রুপান্তর নিয়মের বেসিক  | সাকিব স্যার', 'AQrBCZy8pus')">
+      <i class="fas fa-play"></i>
+      <span class="video-item-title">ক্লাস ৪</span>
+    </div>
+    <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ৫ | বাক্য রুপান্তর নিয়মের বেসিক (২)  | সাকিব স্যার', '1cdONU_NOYw')">
+      <i class="fas fa-play"></i>
+      <span class="video-item-title">ক্লাস ৫</span>
+    </div>
+    <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ৬ | বাক্য রূপান্তর বোর্ড প্রশ্ন সমাধান | সাকিব স্যার', 'N6JU3abj6O8')">
+      <i class="fas fa-play"></i>
+      <span class="video-item-title">ক্লাস ৬</span>
     </div>
   </div>
 </div>
+
+<div class="dropdown">
+  <button class="dropdown-btn" onclick="toggleDropdown(this)">
+    বাংলা ভাষার অপপ্রয়োগ ও শুদ্ধ প্রয়োগ
+    <i class="fas fa-chevron-down"></i>
+  </button>
+  <div class="dropdown-content">
+    <div class="video-item" onclick="changeVideo('বাক্য ক্লাস ১ | বাংলা ভাষার অপপ্রয়োগ ও শুদ্ধ প্রয়োগ | সাকিব স্যার', 'TDIHhhE6ZPY')">
+      <i class="fas fa-play"></i>
+      <span class="video-item-title">ক্লাস ১</span>
+    </div>
+  </div>
+</div>
+
+<div class="dropdown">
+  <button class="dropdown-btn" onclick="toggleDropdown(this)">
+    লিখিত অংশ
+    <i class="fas fa-chevron-down"></i>
+  </button>
+  <div class="dropdown-content">
+    <div class="video-item" onclick="changeVideo('লিখিত পার্ট লেখার নিয়ম কানুন | সাকিব স্যার', '_0Rt2sOdEb4')">
+      <i class="fas fa-play"></i>
+      <span class="video-item-title">ক্লাস ১</span>
+    </div>
+  </div>
+</div>
+
   <script>
+    // Pairings for "বাকি অংশ" videos (main part title => baki part title)
+    const bakiPairings = [
+      {
+        main: { title: 'ক্লাস ৪ | বাংলা ভাষার ব্যাকরণিক শব্দশ্রেণি | ক্রিয়া পদ | সাকিব স্যার', videoId: 'VIM7QdHklNo' },
+        baki: { title: 'ক্লাস ৪ | বাংলা ভাষার ব্যাকরণিক শব্দশ্রেণি | ক্রিয়াপদ রিস্টার্ট | সাকিব স্যার', videoId: 'l597xsADn1U' }
+      },
+      {
+        main: { title: 'ক্লাস ৬ | বাংলা ভাষার ব্যাকরণিক শব্দশ্রেণি | বোর্ড প্রশ্ন সমাধান | সাকিব স্যার', videoId: 'F1H87X1oDus' },
+        baki: { title: 'ক্লাস ৬ | বাংলা ভাষার ব্যাকরণিক শব্দশ্রেণি | বোর্ড প্রশ্ন সমাধান (২) | সাকিব স্যার', videoId: 'PYdpRDqjvRg' }
+      },
+      {
+        main: { title: 'ক্লাস ৬ | Advance | বহুব্রীহি,প্রাদি,নিত্য ও সুপসুপা সমাস | বোর্ড প্রশ্ন সমাধান | সাকিব স্যার (১)', videoId: 'QEQIrL56ZKU' },
+        baki: { title: 'ক্লাস ৬ | Advance | বহুব্রীহি,প্রাদি,নিত্য ও সুপসুপা সমাস | বোর্ড প্রশ্ন সমাধান | সাকিব স্যার (২)', videoId: 'jlb4Q1vY31E' }
+      }
+    ];
+
+    // Animation helpers
+    function animateTransition() {
+      const vw = document.getElementById('videoWrapper');
+      const vt = document.getElementById('videoTitle');
+      vw.classList.add('video-transition');
+      vt.classList.add('video-transition');
+      setTimeout(() => {
+        vw.classList.remove('video-transition');
+        vt.classList.remove('video-transition');
+      }, 900);
+    }
+
+    // --- YT API load & auto-play for (বাকি অংশ) ---
+    let ytPlayer = null;
+    let pendingBaki = null;
+    let autoplayingBaki = false;
+    let lastChangeTimeout = null;
+
+    function findBakiPair(currentTitle, currentVideoId) {
+      return bakiPairings.find(pairing => pairing.main.title === currentTitle && pairing.main.videoId === currentVideoId)?.baki || null;
+    }
+
+    // Load YouTube API async
+    function loadYTAPI() {
+      if (window.YT && window.YT.Player) return;
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    }
+    loadYTAPI();
+
+    window.onYouTubeIframeAPIReady = function() {
+      // Replace current iframe with YT API player
+      let iframe = document.getElementById('videoFrame');
+      let parent = iframe.parentNode;
+      let ytDiv = document.createElement('div');
+      ytDiv.id = 'playerYTFrame';
+      parent.replaceChild(ytDiv, iframe);
+      ytPlayer = new YT.Player('playerYTFrame', {
+        height: '100%',
+        width: '100%',
+        videoId: 'IV6k5HrWQ8w',
+        playerVars: {autoplay: 0, controls: 1, rel: 0},
+        events: {
+          'onStateChange': onYTPlayerStateChange
+        }
+      });
+    };
+
+    function setupAutoBaki(baki) {
+      pendingBaki = baki;
+    }
+
+    function removeYouTubeListener() {
+      pendingBaki = null;
+      autoplayingBaki = false;
+    }
+
+    function onYTPlayerStateChange(event) {
+      // 0 = ended, 1 = playing
+      if (event.data === YT.PlayerState.ENDED && pendingBaki && !autoplayingBaki) {
+        autoplayingBaki = true;
+        // Animate effect and slide to next video
+        animateTransition();
+        // Change video and title smoothly
+        lastChangeTimeout = setTimeout(() => {
+          ytPlayer.loadVideoById(pendingBaki.videoId);
+          document.getElementById('videoTitle').textContent = pendingBaki.title;
+          // No playlist highlight for auto-baki
+        }, 450);
+        // Clean up after playing baki
+        setTimeout(() => {
+          removeYouTubeListener();
+        }, 800);
+      }
+    }
+
+    window.changeVideo = function(title, videoId) {
+      // Remove old highlight
+      document.querySelectorAll('.video-item').forEach(item => item.classList.remove('active'));
+      if (event && event.currentTarget) {
+        event.currentTarget.classList.add('active');
+        event.currentTarget.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+      }
+      animateTransition();
+
+      if (window.YT && window.YT.Player && ytPlayer) {
+        ytPlayer.loadVideoById(videoId);
+        document.getElementById('videoTitle').textContent = title;
+        // Setup (বাকি অংশ) if any
+        const baki = findBakiPair(title, videoId);
+        if (baki) {
+          setupAutoBaki(baki);
+        } else {
+          removeYouTubeListener();
+        }
+      } else {
+        // Fallback
+        let iframe = document.getElementById('videoFrame');
+        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        document.getElementById('videoTitle').textContent = title;
+      }
+    }
+
     function toggleDropdown(button) {
       button.classList.toggle('active');
       const content = button.nextElementSibling;
       content.classList.toggle('show');
     }
-    
-    function toggleChapter(button) {
-      button.classList.toggle('active');
-      const content = button.nextElementSibling;
-      content.classList.toggle('show');
-    }
-    
-    function changeVideo(title, videoId) {
-      // Update video
-      const iframe = document.getElementById('videoFrame');
-      iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-      
-      // Update title
-      document.getElementById('videoTitle').textContent = title;
-      
-      // Update active state in playlist
-      const allItems = document.querySelectorAll('.video-item');
-      allItems.forEach(item => item.classList.remove('active'));
-      event.currentTarget.classList.add('active');
-      
-      // Scroll to the active item
-      event.currentTarget.scrollIntoView({
-        behavior: 'smooth',
-        block: 'nearest'
-      });
-    }
-    
   </script>
 </body>
 </html>
